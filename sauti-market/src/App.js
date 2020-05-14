@@ -14,9 +14,7 @@ const App = () => (
     <PrivateRoute path = '/contact' component = {Contact}/>
   </div>
 
-  <Switch>
-    
-  </Switch>
+
   </Router>
 );
 
