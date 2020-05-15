@@ -1,0 +1,36 @@
+nav {
+    display: flex;
+    background-color: #1f94e2;
+    box-shadow: 5px 5px 18px #888888;
+    
+    padding-bottom: 10px;
+    justify-content: flex-end;
+      align-items: center;
+  }
+  
+  .nav-links {
+    margin: 10px;
+    display: flex;
+    
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+    margin: 10px;
+    
+  }
+  
+
+  
+  @media (max-width: 500px) {
+    nav {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-links {
+      width: 100%;
+      justify-content: space-evenly;
+    }
+  }
