@@ -1,0 +1,16 @@
+form.register-form {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 5rem;
+    > * {
+      display: block;
+      width: 100%;
+    }
+    span.error {
+      display: block;
+      color: red;
+    }
+    button {
+      background-color: #FF3F18;
+    }
+  }
