@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
     headers: {
       authorization: token
     },
-    baseURL: "http://localhost:3000"
+    baseURL: "https://sautimarket.herokuapp.com/"
   });
 };

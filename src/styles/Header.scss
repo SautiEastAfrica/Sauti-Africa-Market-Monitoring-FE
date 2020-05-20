@@ -1,0 +1,27 @@
+header.top {
+    background: #FF3F18;
+    color: #fff;
+    padding: 3rem;
+    a {
+      color: #fff;
+      padding: 1rem;
+      border: 1px solid transparent;
+      &.active {
+        border: 1px solid #fff;
+      }
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      h1 {
+        margin-bottom: 0;
+        a {
+          padding-left: 0;
+        }
+      }
+    }
+  }
