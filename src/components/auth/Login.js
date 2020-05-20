@@ -1,22 +1,35 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, FormGroup, Label, Spinner } from "reactstrap";
+import { FormGroup, Form, Button, Spinner } from "reactstrap";
+
+import { TextField } from '@material-ui/core'; 
 
 import { AuthContext } from "../../App";
 
 function LoginForm(props) {
   const { axios, login } = useContext(AuthContext)();
+  const [user, setUser] = useState({ username: '', password: '' })
   const [loading, setLoading] = useState(false);
-  const { history } = props;
-  const { handleSubmit, register, errors, setError } = useForm();
 
-  const onSubmit = values => {
+  const { history } = props;
+  const { errors, setError } = useForm();
+
+  function handleChange(e){
+      setUser({
+          ...user, [e.target.name]: e.target.value
+      })
+  }
+
+  function handleSubmit(e){
+    e.preventDefault(); 
     setLoading(true);
+    console.log(user); 
     axios
-      .post("/auth/login", values)
+      .post("/auth/login", user)
       .then(response => {
-        const user = response.data;
-        login(user);
+        console.log(response)
+        const data = response.data;
+        login(data);
         history.push("/dashboard");
       })
       .catch(({ response }) => {
@@ -36,57 +49,50 @@ function LoginForm(props) {
           );
         }
       });
-  };
+  }
 
   return (
     <>
-      <form className="form auth-form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="form auth-form" onSubmit={handleSubmit}>
         <FormGroup>
-          <Label for="username">Username</Label>
-          <input
-            className="form-control"
+          {/* <Label for="username">Username</Label> */}
+          <TextField
+            variant="outlined"
+            label="Username"
             name="username"
+            value={user.username}
+            onChange={handleChange}
             type="username"
             id="username"
-            ref={register({
-              required: "Required",
-            })}
           />
           <span className="error">{errors.email && errors.email.message}</span>
         </FormGroup>
         <FormGroup>
-          <Label for="password">Password</Label>
-          <input
+          <TextField
+            variant="outlined"
+            label="password"
             className="form-control"
             type="password"
             name="password"
+            value={user.password}
+            onChange={handleChange}
             id="password"
-            ref={register({
-              required: "Required",
-              validate: value => value !== "password" || "Use a better password"
-            })}
           />
           <span className="error">
             {errors.password && errors.password.message}
           </span>
         </FormGroup>
-
+        
+        <FormGroup>
         {!loading && (
-          <>
-            <Button type="submit" color="primary" size="lg" block>
+          <>  
+            <Button type="submit" color="primary" size="lg">
               Login
-            </Button>
-            <Button
-              color="info"
-              size="lg"
-              block
-              onClick={() => history.push("/register")}
-            >
-              Register
             </Button>
           </>
         )}
-      </form>
+        </FormGroup>
+      </Form>
       {loading && <Spinner color="primary" />}
     </>
   );

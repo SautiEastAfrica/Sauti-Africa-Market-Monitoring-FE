@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'; 
 
 import Header from './Header'; 
 import Login from './auth/Login'; 
@@ -25,6 +25,7 @@ return(
                         <Route path="/logout" component={Logout}/>
                         <Route path="/dashboard" component={Dashboard}/>
                         <Route path="/profile" component={Profile}/>
+                        <Redirect to="/dashboard" />
                     </Switch>
                 </PrivateRoute>
             </Switch>

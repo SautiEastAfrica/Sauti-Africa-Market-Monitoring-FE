@@ -1,18 +1,30 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+// https://reacttraining.com/react-router/web/api/Redirect
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+import React, { useContext } from "react";
+import { Route, Redirect } from "react-router-dom";
+
+import { UserContext } from "../../App";
+
+function PrivateRoute({ children, ...rest }) {
+  const user = useContext(UserContext);
+
   return (
     <Route
       {...rest}
-      render={props => {
-        if (localStorage.getItem('token')) {
-          return <Component {...props} />;
-        } else {
-          return <Redirect to="/login" />;
-        }
-      }}
+      render={({ location }) =>
+        user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
     />
   );
-};
+}
+
 export default PrivateRoute;

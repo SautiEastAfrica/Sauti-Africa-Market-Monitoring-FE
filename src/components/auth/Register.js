@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Button, FormGroup, Label, Spinner } from "reactstrap";
+import { Form, Button, FormGroup, Spinner } from "reactstrap";
 
 import { TextField } from '@material-ui/core'; 
 
@@ -12,37 +12,25 @@ import '../auth/_auth-form.scss';
 
 function Register(props) {
   const { axios, login } = useContext(AuthContext)();
+  const [user, setUser] = useState({ name: '', username: '', password: '', email: '' })
   const [loading, setLoading] = useState(false);
   const { history } = props;
 
-  const schema = yup.object().shape({
-    name: yup.string().required("Please enter your name"),
-    email: yup
-      .string()
-      .matches(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-        "Please enter a valid email address"
-      ),
-    password: yup
-      .string()
-      .min(6, "Password must be at least 6 characters long"),
-    role: yup.string().notOneOf(["Choose one"], "Please select a role")
-  });
+  function handleChange(e){
+    setUser({ 
+      ...user, [e.target.name]: e.target.value
+    })
+    console.log(user); 
+  }
 
-  const { handleSubmit, register, errors } = useForm({
-    defaultValues: { role: "Choose one" },
-    validationSchema: schema
-  });
-
-  const onSubmit = values => {
+  function handleSubmit(e){
+    e.preventDefault(); 
     setLoading(true);
-    delete values.role;
-    console.log(values); 
-    axios.post("/auth/register", values)
+    axios.post("/auth/register", user)
     .then(response => {
       console.log(response);
-      const user = response.data;
-      login(user);
+      const data = response.data;
+      login(data);
       history.push("/dashboard");
     })
     .catch(error => {
@@ -52,70 +40,56 @@ function Register(props) {
 
   return (
     <>
-      <form className="form auth-form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="form auth-form" onSubmit={handleSubmit}>
         <FormGroup>
-          {/* <Label for="name">Name: </Label> */}
           <TextField 
             variant="outlined"
             label="Name"
-            className="form-control"
             name="name"
+            value={user.name}
+            onChange={handleChange}
             type="name"
-            id="name"
-            placeholder="Your Name"
-            ref={register()}
           />
-          <span className="error">{errors.name && errors.name.message}</span>
         </FormGroup>
         <FormGroup>
-          {/* <Label for="name">Username: </Label> */}
           <TextField
             variant="outlined"
             label="Username"
             className="form-control"
             name="username"
+            value={user.username}
+            onChange={handleChange}
             type="username"
-            id="username"
-            placeholder="Username"
-            ref={register()}
           />
-          <span className="error">{errors.name && errors.name.message}</span>
         </FormGroup>
         <FormGroup>
-          {/* <Label for="email">Email: </Label> */}
           <TextField
             variant="outlined"
             label="Email"
-            className="form-control"
             name="email"
+            value={user.email}
+            onChange={handleChange}
             type="email"
-            id="email"
-            placeholder="you@example.com"
-            ref={register()}
           />
-          <span className="error">{errors.email && errors.email.message}</span>
         </FormGroup>
         <FormGroup>
-          {/* <Label for="password">Password: </Label> */}
           <TextField   
             variant="outlined"
             label="Password"
-            className="form-control"
             type="password"
             name="password"
-            id="password"
-            ref={register()}
+            value={user.password}
+            onChange={handleChange}
           />
-          <span className="error">
-            {errors.password && errors.password.message}
-          </span>
         </FormGroup>
+        <FormGroup>
         {!loading && (
           <Button color="primary" type="submit" size="lg">
             Register
           </Button>
         )}
-      </form>
+        </FormGroup>
+      </Form>
       {loading && <Spinner color="primary" />}
     </>
   );
