@@ -1,10 +1,12 @@
 import React from 'react'; 
 import "../styles/Dashboard.scss"
+import image from "../imgs/placeholder.PNG" 
 function Dashboard(){
     return(
-        <div>
+        <div className = "container">
+            <div className="navDiv">
            <nav className = 'nav'> 
-               <a href ><svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <a href ><svg width="24" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.13672 0.692773C9.05469 0.627148 8.94531 0.627148 8.86328 0.692773L0.332031 7.51777C0.282813 7.56152 0.25 7.62168 0.25 7.6873V20.2654C0.25 20.3256 0.299219 20.3748 0.359375 20.3748H6.26562C6.32578 20.3748 6.375 20.3256 6.375 20.2654V12.6092C6.375 12.549 6.42422 12.4998 6.48438 12.4998H11.5156C11.5758 12.4998 11.625 12.549 11.625 12.6092V20.2654C11.625 20.3256 11.6742 20.3748 11.7344 20.3748H17.6406C17.7008 20.3748 17.75 20.3256 17.75 20.2654V7.6873C17.75 7.62168 17.7172 7.55605 17.668 7.51777L9.13672 0.692773Z" fill="#007AFF"/>
 </svg> Home</a>
                <a href><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,6 +23,14 @@ function Dashboard(){
  Reports</a>
             
             </nav>
+            </div>
+            <div>
+<h2>Home Feed</h2>
+<img src= {image} alt= "placeholder"></img>
+</div>
+
+
+        
         </div>
     )
 }

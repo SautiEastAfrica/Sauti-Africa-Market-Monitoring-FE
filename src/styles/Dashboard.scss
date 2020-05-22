@@ -1,4 +1,12 @@
 div{
+
+    div.container{
+display: flex;
+
+div.navDiv{
+    width:20%;
+}
+    }
 nav.nav{
    display: flex;
    flex-direction: column;
@@ -13,6 +21,7 @@ nav.nav{
 
        svg{
      margin:0 1rem;    
+     
   
      
     }
