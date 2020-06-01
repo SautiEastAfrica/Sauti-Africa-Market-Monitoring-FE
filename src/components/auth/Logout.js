@@ -5,6 +5,7 @@ function Logout() {
   const { logout } = useContext(AuthContext)();
 
   logout();
+  console.log('Logged out!')
 
   return <h2>Logged out</h2>;
 }
