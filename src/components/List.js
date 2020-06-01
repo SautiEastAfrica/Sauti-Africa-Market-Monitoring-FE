@@ -47,7 +47,7 @@ const ProductTable = (props) => {
   };
   return (
     <table>
-      <caption>{props.category} Products</caption>
+      <caption><h1>{props.category} Products</h1></caption>
       <thead>
         <tr>
           <th>
