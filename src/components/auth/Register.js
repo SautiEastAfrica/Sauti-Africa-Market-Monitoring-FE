@@ -1,8 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { Form, Button, FormGroup, Spinner } from "reactstrap";
-
 import { TextField } from '@material-ui/core'; 
 
 import { AuthContext } from "../../App";
