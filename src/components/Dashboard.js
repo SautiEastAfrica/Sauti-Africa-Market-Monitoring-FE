@@ -1,11 +1,11 @@
 import React from 'react'; 
-import Converter from './pdf-converter/converter';
+//mport Converter from './pdf-converter_v2/converter';
 
 function Dashboard(){
     return(
         <div>
             Dashboard
-            <Converter /> 
+            {/* <Converter />  */}
         </div>
     )
 }
