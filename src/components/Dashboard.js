@@ -1,11 +1,15 @@
 import React from 'react'; 
-//mport Converter from './pdf-converter_v2/converter';
+import List from './List'; 
 
 function Dashboard(){
+
+    const wholesale = 'Wholesale'; 
+    const retail = 'Retail'; 
+
     return(
         <div>
-            Dashboard
-            {/* <Converter />  */}
+            <List category={wholesale} />
+            <List category={retail} />
         </div>
     )
 }
