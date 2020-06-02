@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Card, CardImg, CardTitle, CardSubtitle, CardHeader, CardBody, CardText, Col, Button} from 'reactstrap';
+import Converter from './pdf-converter/converter';
 
 import '../styles/Profile.scss'; 
 
@@ -21,7 +22,8 @@ function Profile(props){
                     </CardBody>
                 </Card>
                 </Col>
-            </Container>           
+            </Container> 
+            <Converter />          
         </>
     )
 }
