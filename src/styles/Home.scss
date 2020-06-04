@@ -1,0 +1,43 @@
+*{
+    font-family: 'Raleway'
+}
+
+img{
+    max-width: 100%; 
+}
+
+.home{
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto; 
+    border-right: 0.5px dashed #E84C3D;
+    border-left: 0.5px dashed #E84C3D;
+    width: 80%; 
+    font-family: 'Raleway', Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+
+    h1{
+        text-align: center; 
+        width: 100%; 
+    }
+
+    p{
+        font-weight: 400;
+        color: #777;
+        letter-spacing: 0px;
+        line-height: 26px;
+        font-size: 21px;
+    }
+}
+
+.body-text{
+    width: 45%; 
+    margin: 1% auto; 
+}
+
+.body-img{
+    width: 40%; 
+    margin: 2% auto; 
+    border: 0.5px dashed #E84C3D;
+}

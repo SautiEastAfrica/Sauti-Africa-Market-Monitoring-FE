@@ -6,30 +6,30 @@ import '../styles/List.css';
 export default function List(props) {
 
     const { axios } = useContext(AuthContext)(); 
-    const [wholesale, setWholeSale] = useState([{}]); 
+    const [data, setData] = useState([{}]); 
     const category = props.category.toLowerCase(); 
     const title = props.category; 
 
     useEffect(() => {
 
-      async function getWholeSale () { 
-        await axios.get(`https://sautimarket.herokuapp.com/data/${category}`) 
+      async function getData () { 
+        await axios.get(`https://sautimarket.herokuapp.com/${category}/data/`) 
         .then(response => {
             console.log(response.data); 
-            setWholeSale(response.data[`${category}_data`]);
+            setData(response.data[`${category}_data`]);
         })
         .catch(error => {
             console.log(error); 
         })
     }
-
-        getWholeSale(); 
+        getData(); 
     }, [])
+
 
   return (
     <div className="App">
       <ProductTable
-        products={wholesale} category={title}
+        products={data} category={title}
       />
     </div>
   );
@@ -80,6 +80,15 @@ const ProductTable = (props) => {
           <th>
             <button
               type="button"
+              onClick={() => requestSort('currency')}
+              className={getClassNamesFor('currency')}
+            >
+              Currency
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
               onClick={() => requestSort('price')}
               className={getClassNamesFor('price')}
             >
@@ -104,6 +113,15 @@ const ProductTable = (props) => {
               Phase
             </button>
           </th>
+          <th>
+            <button
+              type="button"
+              onClick={() => requestSort('date')}
+              className={getClassNamesFor('date')}
+            >
+              Date
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -112,9 +130,11 @@ const ProductTable = (props) => {
             <td>{item.country}</td>
             <td>{item.marketplace}</td>
             <td>{item.product}</td>
+            <td>{item.currency}</td>
             <td>{item.price}</td>
             <td>{item.category}</td>
             <td>{item.phase}</td>
+            <td>{item.date}</td>
           </tr>
         ))}
       </tbody>

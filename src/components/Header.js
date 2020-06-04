@@ -14,19 +14,22 @@ function Header(props){
         <header className="top">
             <nav>
                 <h1 className="title">
-                    <Link to="/">Market Monitoring - for Sauti Africa</Link>
+                    <Link to="/">SAUTI AFRICA - Market Monitoring</Link>
                 </h1>
                 <div>
                     { user ? (
                         <>
-                        <Link to="/dashboard">Dashboard</Link>
-                        <Link to="/profile">Profile</Link>
-                        <Link to="/logout">Logout</Link>
+                        {/* <Link to="/">HOME</Link> */}
+                        <Link to="/dashboard">DASHBOARD</Link>
+                        {/* <Link to="/product">PRODUCT</Link> */}
+                        <Link to="/profile">PROFILE</Link>
+                        <Link to="/logout">LOGOUT</Link>
                         </>
                     ) : ( 
                         <> 
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
+                        {/* <Link to="/">HOME</Link> */} 
+                        <Link to="/login">LOGIN</Link>
+                        <Link to="/register">REGISTER</Link>
                         </>
                     )}
                 </div>
