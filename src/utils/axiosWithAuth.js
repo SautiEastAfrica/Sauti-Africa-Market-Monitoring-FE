@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const axiosWithAuth = () => {
-  const token = window.localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"))
 
   return axios.create({
     headers: {
-      authorization: token
+      authorization: user && user.token
     },
     baseURL: "https://sautimarket.herokuapp.com/"
   });

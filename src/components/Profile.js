@@ -24,7 +24,7 @@ function Profile(props){
                 </Card>
                 </Col>
             </Container> 
-            <Converter />         
+            <Converter />     
         </>
     )
 }

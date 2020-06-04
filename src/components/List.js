@@ -13,7 +13,7 @@ export default function List(props) {
     useEffect(() => {
 
       async function getWholeSale () { 
-        await axios.get(`https://sautimarket.herokuapp.com/data/${category}`) 
+        await axios.get(`https://sautimarket.herokuapp.com/${category}/data`) 
         .then(response => {
             console.log(response.data); 
             setWholeSale(response.data[`${category}_data`]);
