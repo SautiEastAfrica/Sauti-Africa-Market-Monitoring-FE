@@ -6,6 +6,29 @@ form.auth-form {
     display: block;
     width: 100%;
   }
+
+  button{
+    margin: 2% auto; 
+    padding: 6% 0; 
+    width: 75%; 
+    font-size: 24px; 
+    background-color: #E84C3D;
+    border-color: white; 
+    color: white; 
+    border-radius: 10px; 
+    &:hover{
+      background-color: #F0897F;
+      border-color: #81180E;
+      color: black; 
+      transition-duration: 1000ms;
+    }
+    &.active {
+      border: 1px solid #fff;
+    }
+  }
+
+
+
   span.error {
     display: block;
     color: red;

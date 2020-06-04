@@ -6,6 +6,8 @@ import { TextField } from '@material-ui/core';
 
 import { AuthContext } from "../../App";
 
+import './_auth-form.scss'; 
+
 function LoginForm(props) {
   const { axios, login } = useContext(AuthContext)();
   const [user, setUser] = useState({ username: '', password: '' })
