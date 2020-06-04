@@ -1,0 +1,32 @@
+.product{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    margin: 1%; 
+    max-width: 100%; 
+    border: 1px solid black; 
+}
+
+.chart{
+    margin: auto; 
+    width: 60%; 
+}
+
+.filter{
+    margin: auto; 
+    padding: 2%; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+
+    label{
+        margin: auto; 
+        padding: 1%; 
+        color: blue; 
+    }
+
+    select{
+        width: 100%; 
+        margin: 1%; 
+    }
+}
