@@ -7,6 +7,7 @@ export default function List(props) {
 
     const { axios } = useContext(AuthContext)(); 
     const [data, setData] = useState([{}]); 
+    const [filteredData, setfilteredData] = useState([{}]); 
     const category = props.category.toLowerCase(); 
     const title = props.category; 
 
@@ -23,7 +24,27 @@ export default function List(props) {
         })
     }
         getData(); 
-    }, [])
+        data.filter(checkPhases); 
+    }, []) 
+
+    function checkPhases(object){
+      if(object.phase == 'Stress' || 'Alert' || 'Crisis'){
+        return object; 
+      } else {
+        return null; 
+      } 
+    }
+
+    function filterData(){
+      data.filter((object) => {
+        if (object.phase === 'Stress' || 'Alert' || 'Crisis') {
+          return true; 
+        }
+        else {
+          return false; 
+        }
+      })
+    }
 
 
   return (
@@ -116,6 +137,15 @@ const ProductTable = (props) => {
           <th>
             <button
               type="button"
+              onClick={() => requestSort('stressness')}
+              className={getClassNamesFor('stressness')}
+            >
+              Trending Towards
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
               onClick={() => requestSort('date')}
               className={getClassNamesFor('date')}
             >
@@ -134,6 +164,7 @@ const ProductTable = (props) => {
             <td>{item.price}</td>
             <td>{item.category}</td>
             <td>{item.phase}</td>
+            <td>{item.stressness}</td>
             <td>{item.date}</td>
           </tr>
         ))}
