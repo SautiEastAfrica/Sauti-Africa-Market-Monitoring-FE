@@ -18,34 +18,41 @@ export default function List(props) {
         .then(response => {
             console.log(response.data); 
             setData(response.data[`${category}_data`]);
-        })
+
+            var newData = response.data[`${category}_data`]; 
+            console.log(newData); 
+            var filteredData = newData.filter(filterPhases); 
+            console.log('Filtered Data: ', filteredData); 
+            setData(filteredData); 
+            })
         .catch(error => {
             console.log(error); 
         })
     }
         getData(); 
-        data.filter(checkPhases); 
+        
     }, []) 
 
-    function checkPhases(object){
-      if(object.phase == 'Stress' || 'Alert' || 'Crisis'){
-        return object; 
-      } else {
-        return null; 
-      } 
+    // Another way to filter - run this in a filter >> return wantedPhases.includes(object.phase); 
+    // A regex way to filter
+    // var inputFilter = ''; 
+    // const filter = /${inputFilter}|crisis|alert|stress/i 
+    // new regular expression
+    // filter.test(object.phase); 
+
+    function filterPhases(object){
+      return object.phase === 'Crisis' || object.phase === 'Alert' || object.phase === 'Stress'; 
     }
 
-    function filterData(){
-      data.filter((object) => {
-        if (object.phase === 'Stress' || 'Alert' || 'Crisis') {
-          return true; 
-        }
-        else {
-          return false; 
-        }
-      })
-    }
-
+    // function sortProducts(products){
+    //   latestProducts = {}
+    //   for p in products{
+    //       key = p.marketplace + p.product
+    //       prev = latestProducts[key]
+    //       if prev == undefined or prev and p.date > prev.date:
+    //           latestProducts[key] = p 
+    //       }
+    // }
 
   return (
     <div className="App">
