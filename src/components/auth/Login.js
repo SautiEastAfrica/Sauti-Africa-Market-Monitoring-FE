@@ -10,7 +10,7 @@ import './_auth-form.scss';
 
 function LoginForm(props) {
   const { axios, login } = useContext(AuthContext)();
-  const [user, setUser] = useState({ username: '', password: '' })
+  const [user, setUser] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false);
 
   const { history } = props;
@@ -57,15 +57,15 @@ function LoginForm(props) {
     <>
       <Form className="form auth-form" onSubmit={handleSubmit}>
         <FormGroup>
-          {/* <Label for="username">Username</Label> */}
+          {/* <Label for="email">email</Label> */}
           <TextField
             variant="outlined"
-            label="Username"
-            name="username"
-            value={user.username}
+            label="Email"
+            name="email"
+            value={user.email}
             onChange={handleChange}
-            type="username"
-            id="username"
+            type="email"
+            id="email"
           />
           <span className="error">{errors.email && errors.email.message}</span>
         </FormGroup>

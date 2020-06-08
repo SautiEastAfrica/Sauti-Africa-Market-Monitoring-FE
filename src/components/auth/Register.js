@@ -9,7 +9,7 @@ import '../auth/_auth-form.scss';
 
 function Register(props) {
   const { axios, login } = useContext(AuthContext)();
-  const [user, setUser] = useState({ name: '', username: '', password: '', email: '' })
+  const [user, setUser] = useState({ name: '', password: '', email: '' })
   const [loading, setLoading] = useState(false);
   const { history } = props;
 
@@ -46,17 +46,6 @@ function Register(props) {
             value={user.name}
             onChange={handleChange}
             type="name"
-          />
-        </FormGroup>
-        <FormGroup>
-          <TextField
-            variant="outlined"
-            label="Username"
-            className="form-control"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            type="username"
           />
         </FormGroup>
         <FormGroup>
