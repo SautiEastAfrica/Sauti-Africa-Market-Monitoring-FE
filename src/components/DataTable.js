@@ -102,7 +102,7 @@ class Table extends Component {
     render() {
         return (
             <div>
-                <table ref="main" id="example" class="display"/>
+                <table ref="main" width="100%" id="example" class="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }
