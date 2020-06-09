@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Card, CardImg, CardTitle, CardSubtitle, CardHeader, CardBody, CardText, Col, Button} from 'reactstrap';
-
+import Data from './DataTables/Data';
 import '../styles/Profile.scss'; 
 
 function Profile(props){
@@ -21,7 +21,8 @@ function Profile(props){
                     </CardBody>
                 </Card>
                 </Col>
-            </Container>           
+            </Container>  
+            <Data />         
         </>
     )
 }
