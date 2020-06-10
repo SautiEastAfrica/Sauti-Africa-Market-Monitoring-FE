@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
 
 import '../styles/dataTables.css';
+import 'datatables.net-dt/css/jquery.dataTables.css'; 
 
 const $ = require('jquery'); 
 $.DataTable = require('datatables.net'); 
