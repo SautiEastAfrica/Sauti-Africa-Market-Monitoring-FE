@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import List from './List'; 
-import Table from './DataTable'; 
+import TableRetail from './TableRetail'; 
+import TableWholesale from './TableWholesale'; 
 
 import { AuthContext } from '../App.js'; 
 
@@ -8,32 +9,54 @@ function Dashboard(){
 
     const { axios } = useContext(AuthContext)();
 
-    const wholesale = 'Wholesale'; 
-    const retail = 'Retail'; 
+    const wholesale = 'wholesale'; 
+    const retail = 'retail'; 
 
-    const [data, setData] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '', category: '', phase: '',  stressness: '', date: ''}]); 
-    const category = 'wholesale'; 
+    const [retailData, setRetail] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
+    const [wholesaleData, setWholesale] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
 
     useEffect(() => {
 
-        async function getData () { 
-          await axios.get(`https://sautimarket.herokuapp.com/${category}/data/`) 
+        async function getRetail () { 
+          await axios.get(`https://sautimarket.herokuapp.com/${retail}/data/`) 
           .then(response => {
               console.log(response.data); 
-              setData(response.data[`${category}_data`]);
+              setRetail(response.data[`${retail}_data`]);
   
-              var newData = response.data[`${category}_data`]; 
+              var newData = response.data[`${retail}_data`]; 
               console.log(newData); 
               var filteredData = newData.filter(filterPhases); 
               console.log('Filtered Data: ', filteredData); 
-            //   setData(filteredData); 
-              console.log(data); 
+              setRetail(filteredData); 
+              console.log(retailData); 
               })
           .catch(error => {
               console.log(error); 
           })
       }
-          getData(); 
+          getRetail(); 
+      }, []) 
+
+      useEffect(() => {
+
+        async function getWholesale () { 
+          await axios.get(`https://sautimarket.herokuapp.com/${wholesale}/data/`) 
+          .then(response => {
+              console.log(response.data); 
+              setWholesale(response.data[`${wholesale}_data`]);
+  
+              var newData = response.data[`${wholesale}_data`]; 
+              console.log(newData); 
+              var filteredData = newData.filter(filterPhases); 
+              console.log('Filtered Data: ', filteredData); 
+              setWholesale(filteredData); 
+              console.log(retailData); 
+              })
+          .catch(error => {
+              console.log(error); 
+          })
+      }
+          getWholesale(); 
 
       }, []) 
 
@@ -43,9 +66,8 @@ function Dashboard(){
   
     return(
         <div>
-            {/* <List category={wholesale} /> */}
-            {/* <List category={retail} /> */}
-            <Table data={data}/>
+            <TableRetail data={retailData}/>
+            <TableWholesale data={wholesaleData}/>
         </div>
     )
 }

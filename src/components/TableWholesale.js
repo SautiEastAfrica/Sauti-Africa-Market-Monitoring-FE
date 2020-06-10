@@ -51,18 +51,18 @@ const columns = [
 ];
 
 function reloadTableData(names) {
-    const table = $('.data-table-wrapper').find('table').DataTable();
+    const table = $('.data-table-wrapper2').find('table').DataTable();
     table.clear();
     table.rows.add(names);
     table.draw();
 }
 
-function updateTable(names) {
-    const table = $('.data-table-wrapper').find('table').DataTable();
+function updateTable(data) {
+    const table = $('.data-table-wrapper2').find('table').DataTable();
     let dataChanged = false;
     table.rows().every(function () {
         const oldNameData = this.data();
-        const newNameData = names.find((nameData) => {
+        const newNameData = data.find((nameData) => {
             return nameData.price === oldNameData.price;
         });
         if (oldNameData.price !== newNameData.price) {
@@ -77,10 +77,10 @@ function updateTable(names) {
     }
 }
 
-class Table extends Component {
+class TableWholesale extends Component {
     componentDidMount() {
         $(this.refs.main).DataTable({
-            dom: '<"data-table-wrapper"lfrtip>',
+            dom: '<"data-table-wrapper2"lfrtip>',
             data: this.props.data,
             columns,
             ordering: true
@@ -88,7 +88,7 @@ class Table extends Component {
     }
     
     componentWillUnmount(){
-       $('.data-table-wrapper').find('table').DataTable().destroy(true);
+       $('.data-table-wrapper2').find('table').DataTable().destroy(true);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -103,13 +103,13 @@ class Table extends Component {
     render() {
         return (
             <div>
-                <table ref="main" width="100%" id="example" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example2" class="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }
 
-Table.propTypes = {
+TableWholesale.propTypes = {
     data: PropTypes.array
 };
 
-export default Table;
+export default TableWholesale;
