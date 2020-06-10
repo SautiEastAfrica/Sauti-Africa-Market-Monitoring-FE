@@ -5,6 +5,15 @@ const LineChart = (props) => {
     
     const [chartData, setChartData] = useState({}); 
 
+    const [countries, setCountry] = useState([]); 
+    const [markets, setMarket] = useState([]); 
+    const [products, setProduct] = useState([]);
+    const [category, setCategory] = useState(['wholesale']); 
+
+    function handleChange(){
+
+    }
+    
     const chart = () => {
 
         setChartData({
@@ -28,7 +37,37 @@ const LineChart = (props) => {
         }, [])
 
     return(
+            <div>
             <Line data={chartData}/>
+            <form className='filter'>
+                <label>Select the country, marketplace, & product to view: </label>
+                <select onChange={handleChange()}>
+                    <option key={category} value={category}>Wholesale</option>
+                    <option key={category} value={category}>Retail</option>
+                </select>
+                <select onChange={handleChange()}>
+                    {countries &&
+                    countries.length > 0 &&
+                    countries.map(country => {
+                        return <option key={country} value={country}>{country}</option>;
+                    })}
+                </select>
+                <select onChange={handleChange()}>
+                    {markets &&
+                    markets.length > 0 &&
+                    markets.map(market => {
+                        return <option key={market} value={market}>{market}</option>;
+                    })}
+                </select>
+                <select onChange={handleChange()}>
+                    {products &&
+                    products.length > 0 &&
+                    products.map(product => {
+                        return <option key={product} value={product}>{product}</option>;
+                    })}
+                </select>
+            </form>
+            </div>
     )
 }
 
