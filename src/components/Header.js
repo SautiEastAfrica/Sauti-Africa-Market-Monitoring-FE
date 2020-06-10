@@ -23,7 +23,7 @@ function Header(props){
                         <>
                         {/* <Link to="/">HOME</Link> */}
                         <Link to="/dashboard">DASHBOARD</Link>
-                        {/* <Link to="/product">PRODUCT</Link> */}
+                        <Link to="/product">PRODUCT</Link>
                         <Link to="/profile">PROFILE</Link>
                         <Link to="/logout">LOGOUT</Link>
                         </>
