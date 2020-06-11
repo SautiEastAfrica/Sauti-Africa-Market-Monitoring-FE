@@ -60,14 +60,24 @@ const columns = [
         data: 'product'
     },
     {
+        title: 'Category',
+        width: 180,
+        data: 'category'
+    },
+    {
+        title: 'Price',
+        width: 180,
+        data: 'price'
+    },
+    {
         title: 'Currency',
         width: 180,
         data: 'currency'
     },
     {
-        title: 'Category',
+        title: 'Method',
         width: 180,
-        data: 'category'
+        data: 'method'
     },
     {
         title: 'Phase',
