@@ -9,26 +9,25 @@ function Dashboard(){
 
     const { axios } = useContext(AuthContext)();
 
-    const wholesale = 'wholesale'; 
-    const retail = 'retail'; 
-
     const [retailData, setRetail] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
     const [wholesaleData, setWholesale] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
 
     useEffect(() => {
 
         async function getRetail () { 
-          await axios.get(`https://sautimarket.herokuapp.com/${retail}/data/`) 
+          await axios.get(`https://sautimarket.herokuapp.com/retail/data/latest`) 
           .then(response => {
               console.log(response.data); 
-              setRetail(response.data[`${retail}_data`]);
-  
-              var newData = response.data[`${retail}_data`]; 
-              console.log(newData); 
-              var filteredData = newData.filter(filterPhases); 
-              console.log('Filtered Data: ', filteredData); 
-              setRetail(filteredData); 
+              setRetail(response.data[`retail_latest`]);
               console.log(retailData); 
+
+            //   Filter function that may be necessary in the future
+            //   var newData = response.data[`${wholesale}_latest`]; 
+            //   console.log(newData); 
+            //   var filteredData = newData.filter(filterPhases); 
+            //   console.log('Filtered Data: ', filteredData); 
+            //   setWholesale(filteredData); 
+
               })
           .catch(error => {
               console.log(error); 
@@ -40,17 +39,19 @@ function Dashboard(){
       useEffect(() => {
 
         async function getWholesale () { 
-          await axios.get(`https://sautimarket.herokuapp.com/${wholesale}/data/`) 
+          await axios.get(`https://sautimarket.herokuapp.com/wholesale/data/latest`) 
           .then(response => {
               console.log(response.data); 
-              setWholesale(response.data[`${wholesale}_data`]);
-  
-              var newData = response.data[`${wholesale}_data`]; 
-              console.log(newData); 
-              var filteredData = newData.filter(filterPhases); 
-              console.log('Filtered Data: ', filteredData); 
-              setWholesale(filteredData); 
-              console.log(retailData); 
+              setWholesale(response.data[`wholesale_latest`]);
+              console.log(wholesaleData); 
+            
+            //   Filter function that may be necessary in the future
+            //   var newData = response.data[`${wholesale}_latest`]; 
+            //   console.log(newData); 
+            //   var filteredData = newData.filter(filterPhases); 
+            //   console.log('Filtered Data: ', filteredData); 
+            //   setWholesale(filteredData); 
+              
               })
           .catch(error => {
               console.log(error); 

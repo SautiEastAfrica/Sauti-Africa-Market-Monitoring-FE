@@ -1,8 +1,40 @@
 import React, { Component } from 'react'; 
 import PropTypes from 'prop-types'; 
 
-import '../styles/dataTables.css';
-import 'datatables.net-dt/css/jquery.dataTables.css'; 
+// require all styling buttons
+import * as jzip from 'jszip';
+import 'jszip';
+
+// import 'datatables.net-dt';
+// import 'datatables.net-autofill-dt';
+// import 'datatables.net-buttons-dt'; 
+// import 'datatables.net-buttons/js/buttons.colVis.js';
+// import 'datatables.net-buttons/js/buttons.flash.js'; 
+// import 'datatables.net-buttons/js/buttons.html5.js';
+// import 'datatables.net-buttons/js/buttons.print.js';
+// import 'datatables.net-colreorder-dt';
+// import 'datatables.net-fixedcolumns-dt';
+// import 'datatables.net-fixedheader-dt';
+// import 'datatables.net-keytable-dt';
+// import 'datatables.net-responsive-dt';
+// import 'datatables.net-rowgroup-dt';
+// import 'datatables.net-rowreorder-dt';
+// import 'datatables.net-scroller-dt';
+// import 'datatables.net-searchpanes-dt';
+import 'datatables.net-select-dt';
+// end require
+
+// import '../styles/dataTablesCustom.css';
+import '../styles/dataTablesButtons.css';
+import '../styles/tableContainer.scss'; 
+
+// Fix vfsfonts import error in pdfMake
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// End fixing of error
+
+window.JSZip = jzip;
 
 const $ = require('jquery'); 
 $.DataTable = require('datatables.net'); 
@@ -80,8 +112,11 @@ function updateTable(products) {
 class TableRetail extends Component {
     componentDidMount() {
         $(this.refs.main).DataTable({
-            dom: '<"data-table-wrapper"lfrtip>',
+            dom: '<"data-table-wrapper"Blfrtip>',
             data: this.props.data,
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ], 
             columns,
             ordering: true
         });
@@ -103,7 +138,9 @@ class TableRetail extends Component {
 
     render() {
         return (
-            <div>
+            <div className='tableData'>
+                <h1>Retail Data</h1>
+                <hr/>
                 <table ref="main" width="100%" id="example" class="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
