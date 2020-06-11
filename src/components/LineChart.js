@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2'; 
 
 const LineChart = (props) => {
+
+    // API URL: https://sauti-market-monitoring.herokuapp.com/wholesale/?country_code=TZA&market_name=Arusha&product_name=Kahama+Rice 
     
     const [chartData, setChartData] = useState({}); 
 
@@ -15,6 +17,8 @@ const LineChart = (props) => {
     }
     
     const chart = () => {
+
+        
 
         setChartData({
             labels: props.labels, // Example: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] X-axis
