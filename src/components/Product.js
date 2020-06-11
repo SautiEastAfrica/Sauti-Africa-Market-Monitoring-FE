@@ -32,7 +32,7 @@ function Product(){
     return(
         <div className='product'>
             <div className='chart'>
-            <LineChart labels={labels} data={data} title={title} />
+            {/* <LineChart labels={labels} data={data} title={title} /> */}
             </div>
         </div>
     )
