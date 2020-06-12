@@ -70,11 +70,12 @@ const columns = [
         width: 180,
         data: 'currency'
     },
-    // {
-    //     title: 'Method',
-    //     width: 180,
-    //     data: 'method'
-    // },
+    {
+        title: 'Method',
+        width: 180,
+        data: 'method', 
+        defaultContent: "<i>Not set</i>"
+    },
     {
         title: 'Phase',
         width: 180,
