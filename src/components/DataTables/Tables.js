@@ -1,76 +1,50 @@
-import React, { Component, useState, useEffect } from 'react';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import React, { Component } from 'react';
 
-// import $ from 'jquery';
-// import DataTable from 'datatables.net';
-// $.DataTable = DataTable
-const $ = require('jquery')
-$.DataTable = require('datatables.net');
+import $ from 'jquery';
+import 'datatables.net-dt/css/jquery.dataTables.css';
+require('datatables.net');
 
-class Tables extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            wholesale_data: null
-        }
+class DataTables extends Component {
+    constructor(props) {
+        super(props);
+        this.datatable = null;
     }
     
     componentDidMount() {
-        axiosWithAuth()
-        .get('https://sautimarket.herokuapp.com/wholesale/data')
-        .then(res => {
-            console.log('data', res.data);
-            this.setState({
-                wholesale_data: res.data
-            })
-            console.log(this.state.wholesale_data.wholesale_data)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        console.log('props',this.props.data)
-        console.log(this.el);
         this.$el = $(this.el);
-        this.$el.DataTable(
-            {
-                data: this.state.wholesale_data,
-                columns: [
-                    {data: 'category'},
-                    {title: 'country'},
-                    {title: 'currency'},
-                    {title: 'date'},
-                    {title: 'market_id'},
-                    {title: 'marketplace'},
-                    {title: 'phase'},
-                    {title: 'price'},
-                    {title: 'product'},
-                    {title: 'source_id'},
-                    {title: 'stressness'}
-                ]
-
-            }
-        )
-
+        this.dataTable = this.$el.DataTable({
+            data:this.props.data,
+            columns: this.props.columns,
+            ...this.props.options
+        });
     }
-    componentWillUnmount() {
 
+    shouldComponentUpdate() {
+        return false;
     }
+    
+    
+    search = (value => {
+        this.dataTable.search(value).draw();
+    });
+
     render() {
         return(
-            <div>
                 <table
                     className='display'
                     width='100%'
-                    ref={el => this.el = el}
+                    ref={(el) => (this.el = el)}
                 >
                 </table>
-            </div>
         );
+    }
+
+    componentWillUnmount() {
+        this.dataTable.destroy(true);
     }
 }
 
-export default Tables;
+export default DataTables;
 
 
 
