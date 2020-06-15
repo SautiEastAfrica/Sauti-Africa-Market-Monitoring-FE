@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'; 
-import List from './List'; 
 import TableRetail from './TableRetail'; 
+import TableRetailQC from './TableRetailQC'; 
 import TableWholesale from './TableWholesale'; 
+import TableWholesaleQC from './TableWholesaleQC';
 
 import { AuthContext } from '../App.js'; 
 
@@ -10,7 +11,12 @@ function Dashboard(){
     const { axios } = useContext(AuthContext)();
 
     const [retailData, setRetail] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
+    
+    const [retailQC, setRetailQC] = useState([{ country: '', marketplace: '', product: '', category: '', DQI: '1', DQI_cat: '', completeness: '', duplicates: '', data_length: '', data_points: '', start_date: '', end_date: '', timeliness: '', source: '', mode_D: '' }]); 
+
     const [wholesaleData, setWholesale] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
+
+    const [wholesaleQC, setWholesaleQC] = useState([{ country: '', marketplace: '', product: '', category: '', DQI: '1', DQI_cat: '', completeness: '', duplicates: '', data_length: '', data_points: '', start_date: '', end_date: '', timeliness: '', source: '', mode_D: '' }]); 
 
     useEffect(() => {
 
@@ -21,19 +27,27 @@ function Dashboard(){
               setRetail(response.data[`retail_latest`]);
               console.log(retailData); 
 
-            //   Filter function that may be necessary in the future
-            //   var newData = response.data[`${wholesale}_latest`]; 
-            //   console.log(newData); 
-            //   var filteredData = newData.filter(filterPhases); 
-            //   console.log('Filtered Data: ', filteredData); 
-            //   setWholesale(filteredData); 
-
               })
           .catch(error => {
               console.log(error); 
           })
       }
+
+      async function getRetailQC () { 
+        await axios.get(`https://sautimarket.herokuapp.com/retail/quality`) 
+        .then(response => {
+            console.log(response.data); 
+            setRetailQC(response.data.quality_retail);
+            console.log(retailQC); 
+            })
+        .catch(error => {
+            console.log(error); 
+        })
+    }
+    
           getRetail(); 
+          getRetailQC(); 
+
       }, []) 
 
       useEffect(() => {
@@ -44,31 +58,36 @@ function Dashboard(){
               console.log(response.data); 
               setWholesale(response.data[`wholesale_latest`]);
               console.log(wholesaleData); 
-            
-            //   Filter function that may be necessary in the future
-            //   var newData = response.data[`${wholesale}_latest`]; 
-            //   console.log(newData); 
-            //   var filteredData = newData.filter(filterPhases); 
-            //   console.log('Filtered Data: ', filteredData); 
-            //   setWholesale(filteredData); 
-              
+
               })
           .catch(error => {
               console.log(error); 
           })
       }
+
+      async function getWholesaleQC () { 
+        await axios.get(`https://sautimarket.herokuapp.com/wholesale/quality`) 
+        .then(response => {
+            console.log(response.data); 
+            setWholesaleQC(response.data.quality_wholesale);
+            console.log(wholesaleQC); 
+            })
+        .catch(error => {
+            console.log(error); 
+        })
+    }
+
           getWholesale(); 
+          getWholesaleQC(); 
 
       }, []) 
-
-      function filterPhases(object){
-        return object.phase === 'Crisis' || object.phase === 'Alert' || object.phase === 'Stress'; 
-      }
   
     return(
         <div>
             <TableRetail data={retailData}/>
             <TableWholesale data={wholesaleData}/>
+            <TableRetailQC data={retailQC}/>
+            <TableWholesaleQC data={wholesaleQC}/>
         </div>
     )
 }

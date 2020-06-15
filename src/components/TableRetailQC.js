@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component, useEffect, useState } from 'react'; 
 import PropTypes from 'prop-types'; 
 
 // require all styling buttons
@@ -61,55 +61,86 @@ const columns = [
         data: 'category'
     },
     {
-        title: 'Price',
+        title: 'Completeness',
         width: 180,
-        data: 'price',
+        data: 'completeness',
         defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Currency',
+        title: 'Timeliness',
         width: 180,
-        data: 'currency'
-    },
+        data: 'timeliness', 
+        defaultContent: "<i>Not set</i>"
+    }, 
     {
-        title: 'Method',
+        title: 'DQI',
         width: 180,
-        data: 'method', 
+        data: 'DQI', 
         defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Phase',
+        title: 'DQI Category',
         width: 180,
-        data: 'phase'
+        data: 'DQI_cat'
     },
     {
-        title: 'Stressness',
+        title: 'Data Length',
         width: 180,
-        data: 'stressness'
+        data: 'data_length'
     },
     {
-        title: 'Date',
+        title: 'Data Points',
         width: 180,
-        data: 'date'
+        data: 'data_points'
+    }, 
+    {
+        title: 'Duplicates',
+        width: 180,
+        data: 'duplicates'
+    }, 
+    {
+        title: 'Start Date',
+        width: 180,
+        data: 'start_date'
+    }, 
+    {
+        title: 'End Date',
+        width: 180,
+        data: 'end_date'
+    }, 
+    {
+        title: 'Source',
+        width: 180,
+        data: 'source'
+    }, 
+    {
+        title: 'Mode D',
+        width: 180,
+        data: 'mode_D'
     }
 ];
 
 function reloadTableData(names) {
-    const table = $('.data-table-wrapper').find('table').DataTable();
+    const table = $('.data-table-wrapper3').find('table').DataTable();
     table.clear();
     table.rows.add(names);
     table.draw();
 }
 
 function updateTable(products) {
-    const table = $('.data-table-wrapper').find('table').DataTable();
+    const table = $('.data-table-wrapper3').find('table').DataTable();
     let dataChanged = false;
     table.rows().every(function () {
         const oldData = this.data();
         const newData = products.find((productData) => {
-            return productData.price === oldData.price;
+            return productData.DQI === oldData.DQI;
         });
-        if (oldData.price !== newData.price) {
+        
+        // insert test log here
+        console.log(products)
+        // end test log
+
+        if (oldData.DQI !== newData.DQI) {
             dataChanged = true;
             this.data(newData);
         }
@@ -121,10 +152,10 @@ function updateTable(products) {
     }
 }
 
-class TableRetail extends Component {
+class TableRetailQC extends Component {
     componentDidMount() {
         $(this.refs.main).DataTable({
-            dom: '<"data-table-wrapper"Blfrtip>',
+            dom: '<"data-table-wrapper3"Blfrtip>',
             data: this.props.data,
             buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
@@ -135,7 +166,7 @@ class TableRetail extends Component {
     }
     
     componentWillUnmount(){
-       $('.data-table-wrapper').find('table').DataTable().destroy(true);
+       $('.data-table-wrapper3').find('table').DataTable().destroy(true);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -151,15 +182,15 @@ class TableRetail extends Component {
     render() {
         return (
             <div className='tableData'>
-                <h1>Retail Data</h1>
+                <h1>Retail Data QC</h1>
                 <hr/>
-                <table ref="main" width="100%" id="example" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example3" class="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }
 
-TableRetail.propTypes = {
+TableRetailQC.propTypes = {
     data: PropTypes.array
 };
 
-export default TableRetail;
+export default TableRetailQC;

@@ -2,9 +2,14 @@
     display: flex; 
     flex-wrap: wrap; 
     justify-content: center;
-    margin: 1%; 
+    margin: auto; 
     max-width: 100%; 
     border: 1px solid black; 
+
+    form{
+        margin: auto; 
+        width: 50%; 
+    }
 }
 
 .chart{
