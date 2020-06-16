@@ -8,48 +8,49 @@ const LineChart = (props) => {
     // API URL: https://sauti-market-monitoring.herokuapp.com/wholesale/?country_code=TZA&market_name=Arusha&product_name=Kahama+Rice 
     
     console.log(`Line Chart props: `, props); 
+
     const [chartData, setChartData] = useState({}); 
 
-    const [x, setX] = useState([])
-    const [y, setY] = useState([]); 
+    const [xAxis, setX] = useState([])
+    const [yAxis, setY] = useState([]); 
     const dates = []; 
     const prices = []; 
     var max = 0; 
     var min = 0; 
 
-    useEffect(() => {
-        props.data.map(function(object){
-            dates.push(object.date); 
-        })
-        console.log(dates); 
+    useEffect(() => { 
 
-        props.data.map(function(object){
-            prices.push(object.price); 
-        })
-        console.log(prices); 
+        // Create date array for the X-axis and set it to the xAxis state variable
+            props.history.map(function(object){ 
+                dates.push(object.date_price); 
+            }) 
+            console.log(`X-axis: `, dates); 
+            setX(dates); 
 
-        max = prices.reduce(function(a, b){
-            return Math.max(a, b); 
-        })
-        console.log(`Maximum: `, max)
+        // Create price array for the Y-axis and set it to the yAxis state variable
+            props.history.map(function(object){ 
+                prices.push(object.observed_price); 
+            }) 
+            console.log(`Y-axis: `, prices); 
+            setY(prices); 
 
-        min = prices.reduce(function(a, b){
-            console.log(Math.min(a, b)); 
-            return Math.min(a, b); 
-        })
-        console.log(`Minimum: `, min)
+        // Find the minimum and maximum of the prices
+        max = prices.reduce(function(a, b){ return Math.max(a, b); })
+        console.log(`Maximum of prices: `, max)
 
+        min = prices.reduce(function(a, b){ return Math.min(a, b); })
+        console.log(`Minimum of prices: `, min)
 
     }, [props])
 
     const chart = () => {
 
         setChartData({
-            labels: props.labels, // Example: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] X-axis
+            labels: xAxis, // Example: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] X-axis
             datasets: [
                 {
-                    label: props.title, 
-                    data: props.data, // Example: [32, 45, 12,76, 69] Y-axis
+                    label: props.history[0].product_name, 
+                    data: yAxis, // Example: [32, 45, 12,76, 69] Y-axis
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.6)'
                     ], 

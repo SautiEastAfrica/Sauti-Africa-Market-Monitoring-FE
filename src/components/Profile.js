@@ -4,7 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
+
 import '../styles/Profile.scss'; 
+
 import { AuthContext } from '../App.js'; 
 import { UserContext } from "../App";
 
@@ -70,15 +72,10 @@ const handleSubmit = event => {
   };
       
     return(
-        <>
-            <Container className='profile'>
-                <Col>
+        <div className='profile'>
                 <Card>
-                    <CardTitle>Profile</CardTitle>
-                    <CardSubtitle></CardSubtitle>
-                    <CardHeader>Edit your profile here.</CardHeader>
-                    <UpdateStyles className={classes.root}>
-
+                    <CardTitle>Profile</CardTitle><br/>
+                    <CardHeader>Edit your profile here.</CardHeader><br/>
                         <TextField
                         label="Name"
                         variant="outlined"
@@ -86,7 +83,7 @@ const handleSubmit = event => {
                         value={user.name}
                         onChange={handleChange}
                       
-                        />
+                        /><br/>
                         <TextField
                         label="Email"
                         variant="outlined"
@@ -94,13 +91,10 @@ const handleSubmit = event => {
                         value={user.email}
                         onChange={handleChange}
                         type= "email"
-                        />
+                        /><br/>
                         <Button variant="contained" type="submit" onClick={handleSubmit}>Save Changes</Button>
-                    </UpdateStyles>
                 </Card>
-                </Col>
-            </Container>           
-        </>
+        </div>
     )
 }
 
