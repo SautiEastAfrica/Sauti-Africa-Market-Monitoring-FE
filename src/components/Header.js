@@ -13,11 +13,9 @@ function Header(props){
     return(
         <header className="top">
             <nav>
-                <div className='header-img'>
                     {/* <Link className='header-img' to="/">  */}
                         <img src={require('../images/Sauti-logo-big.png')}/> 
                     {/* </Link> */}
-                </div>
                 <div>
                     { user ? (
                         <>

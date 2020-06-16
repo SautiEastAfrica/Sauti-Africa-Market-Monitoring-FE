@@ -10,9 +10,8 @@ function Home (){
         <div>
             <img src={require('../images/sauti-2.jpg')}/>
 
-        <div className='home'>
-            
-            
+            <div className='home'>
+   
             <h1>Market Monitoring</h1>
 
             <p className='body-text'>
