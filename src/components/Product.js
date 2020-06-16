@@ -103,10 +103,10 @@ function Product(){
                 <button onClick={handleSubmit}>Get Product Info</button>
 
             </form> */}
-                <Summary data={summary}/>
+                {/* <Summary data={summary}/>
                 <DataQuality data={quality}/>
                 <LineChart history={history} summary={summary} quality={quality} />
-                <TableProduct data={history}/>
+                <TableProduct data={history}/> */}
                 {/* <Methodology/> */}
         </div>
     )
