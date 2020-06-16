@@ -24,7 +24,7 @@ function Dashboard(){
           await axios.get(`https://sautimarket.herokuapp.com/retail/data/latest`) 
           .then(response => {
               console.log(response.data); 
-              setRetail(response.data[`retail_latest`]);
+              setRetail(response.data);
               console.log(retailData); 
 
               })
@@ -37,7 +37,7 @@ function Dashboard(){
         await axios.get(`https://sautimarket.herokuapp.com/retail/quality`) 
         .then(response => {
             console.log(response.data); 
-            setRetailQC(response.data.quality_retail);
+            setRetailQC(response.data);
             console.log(retailQC); 
             })
         .catch(error => {
@@ -56,7 +56,7 @@ function Dashboard(){
           await axios.get(`https://sautimarket.herokuapp.com/wholesale/data/latest`) 
           .then(response => {
               console.log(response.data); 
-              setWholesale(response.data[`wholesale_latest`]);
+              setWholesale(response.data);
               console.log(wholesaleData); 
 
               })
@@ -69,7 +69,7 @@ function Dashboard(){
         await axios.get(`https://sautimarket.herokuapp.com/wholesale/quality`) 
         .then(response => {
             console.log(response.data); 
-            setWholesaleQC(response.data.quality_wholesale);
+            setWholesaleQC(response.data);
             console.log(wholesaleQC); 
             })
         .catch(error => {

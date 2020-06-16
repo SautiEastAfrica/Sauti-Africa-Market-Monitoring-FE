@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'; 
+import React, { Component } from 'react'; 
 import PropTypes from 'prop-types'; 
 
 // require all styling buttons
@@ -161,7 +161,8 @@ class TableWholesaleQC extends Component {
             'copy', 'csv', 'excel', 'pdf', 'print'
             ], 
             columns,
-            ordering: true
+            ordering: true, 
+            scrollX: true
         });
     }
     

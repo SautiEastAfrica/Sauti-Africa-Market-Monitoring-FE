@@ -4,6 +4,7 @@ header.top {
     padding: 3rem;
     display: flex; 
     a {
+      width: 100%; 
       color: #E84C3D; 
       background-color: white; 
       font-family: Raleway; 
@@ -30,24 +31,24 @@ header.top {
       align-items: center;
       max-width: var(--max-width);
       margin: 0 auto;
+
+      div{
+        width: 50%; 
+      }
+
       img{
         width: 10%; 
+        background: white;
+        padding: 2%; 
+        border-radius: 15px; ;
       }
+
       h1 {
         margin-bottom: 0;
         a {
           padding-left: 0;
         }
       }
-    }
-  }
 
-
-  // Class for header image
-  .header-img{
-    img{
-      background: white;
-      padding: 2%; 
-      border-radius: 15px; ;
     }
   }

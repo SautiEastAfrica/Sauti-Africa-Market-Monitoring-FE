@@ -42,103 +42,81 @@ $.DataTable = require('datatables.net');
 const columns = [
     {
         title: 'Country',
-        width: 160,
-        data: 'country'
+        width: 120,
+        data: 'counrty', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Marketplace',
-        width: 160,
-        data: 'marketplace'
+        width: 180,
+        data: 'marketplace', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Product',
-        width: 160,
-        data: 'product'
+        width: 180,
+        data: 'product', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Category',
         width: 180,
-        data: 'category'
-    },
-    {
-        title: 'Completeness',
-        width: 180,
-        data: 'completeness',
+        data: 'category', 
         defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Timeliness',
+        title: 'Price',
         width: 180,
-        data: 'timeliness', 
-        defaultContent: "<i>Not set</i>"
-    }, 
-    {
-        title: 'DQI',
-        width: 180,
-        data: 'DQI', 
+        data: 'price',
         defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'DQI Category',
+        title: 'Currency',
         width: 180,
-        data: 'DQI_cat'
+        data: 'currency', 
+        defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Data Length',
-        width: 100,
-        data: 'data_length'
+        title: 'Method',
+        width: 180,
+        data: 'method', 
+        defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Data Points',
+        title: 'Phase',
         width: 180,
-        data: 'data_points'
-    }, 
+        data: 'phase', 
+        defaultContent: "<i>Not set</i>"
+    },
     {
-        title: 'Duplicates',
+        title: 'Stressness',
         width: 180,
-        data: 'duplicates'
-    }, 
+        data: 'stressness', 
+        defaultContent: "<i>Not set</i>"
+    },
     {
-        title: 'Start Date',
+        title: 'Date',
         width: 180,
-        data: 'start_date'
-    }, 
-    {
-        title: 'End Date',
-        width: 180,
-        data: 'end_date'
-    }, 
-    {
-        title: 'Source',
-        width: 180,
-        data: 'source'
-    }, 
-    {
-        title: 'Mode D',
-        width: 180,
-        data: 'mode_D'
+        data: 'date', 
+        defaultContent: "<i>Not set</i>"
     }
-];
+]
 
 function reloadTableData(names) {
-    const table = $('.data-table-wrapper3').find('table').DataTable();
+    const table = $('.data-table-wrapper5').find('table').DataTable();
     table.clear();
     table.rows.add(names);
     table.draw();
 }
 
 function updateTable(products) {
-    const table = $('.data-table-wrapper3').find('table').DataTable();
+    const table = $('.data-table-wrapper5').find('table').DataTable();
     let dataChanged = false;
     table.rows().every(function () {
         const oldData = this.data();
         const newData = products.find((productData) => {
             return productData.DQI === oldData.DQI;
         });
-        
-        // insert test log here
-        // console.log(products)
-        // end test log
 
         if (oldData.DQI !== newData.DQI) {
             dataChanged = true;
@@ -152,22 +130,22 @@ function updateTable(products) {
     }
 }
 
-class TableRetailQC extends Component {
+class TableProduct extends Component {
     componentDidMount() {
         $(this.refs.main).DataTable({
-            dom: '<"data-table-wrapper3"Blfrtip>',
+            dom: '<"data-table-wrapper5"Blfrtip>',
             data: this.props.data,
             buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
             ], 
             columns,
-            ordering: true,
+            ordering: true, 
             scrollX: true
         });
     }
     
     componentWillUnmount(){
-       $('.data-table-wrapper3').find('table').DataTable().destroy(true);
+       $('.data-table-wrapper5').find('table').DataTable().destroy(true);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -183,15 +161,15 @@ class TableRetailQC extends Component {
     render() {
         return (
             <div className='tableData'>
-                <h1>Retail Data QC</h1>
+                <h1>Product History</h1>
                 <hr/>
-                <table ref="main" width="100%" id="example3" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example5" class="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }
 
-TableRetailQC.propTypes = {
+TableProduct.propTypes = {
     data: PropTypes.array
 };
 
-export default TableRetailQC;
+export default TableProduct;

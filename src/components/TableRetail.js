@@ -91,6 +91,18 @@ const columns = [
         title: 'Date',
         width: 180,
         data: 'date'
+    }, 
+    {
+        title: 'More Details',
+        width: 180,
+        data: 'weblink', 
+        "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="' + row.myid + '">' + data + '</a>'; 
+            }
+            return data; 
+        }, 
+        defaultContent: "<i>Not set</i>"
     }
 ];
 
