@@ -1,0 +1,18 @@
+.profile{
+    margin: 5% auto;
+    padding: 2%; 
+    border: 1px solid black; 
+    border-radius: 15px; 
+    width: 40%; 
+
+    display: flex; 
+    justify-content: center;
+
+    input{
+        margin: 3% auto; 
+
+    }
+    button{
+        margin: 1%;
+    }
+}

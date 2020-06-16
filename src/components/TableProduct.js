@@ -43,61 +43,50 @@ const columns = [
     {
         title: 'Country',
         width: 120,
-        data: 'counrty', 
-        defaultContent: "<i>Not set</i>"
+        data: 'country_code', 
+        defaultContent: "<i>Not set</i>",
+        className: 'dt-body-right'
     },
     {
         title: 'Marketplace',
         width: 180,
-        data: 'marketplace', 
+        data: 'market_name', 
+        className: 'dt-body-right', 
         defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Product',
         width: 180,
-        data: 'product', 
-        defaultContent: "<i>Not set</i>"
-    },
-    {
-        title: 'Category',
-        width: 180,
-        data: 'category', 
+        data: 'product_name', 
+        className: 'dt-body-right', 
         defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Price',
         width: 180,
-        data: 'price',
+        data: 'observed_price',
+        className: 'dt-body-right', 
         defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Currency',
         width: 180,
-        data: 'currency', 
-        defaultContent: "<i>Not set</i>"
-    },
-    {
-        title: 'Method',
-        width: 180,
-        data: 'method', 
-        defaultContent: "<i>Not set</i>"
-    },
-    {
-        title: 'Phase',
-        width: 180,
-        data: 'phase', 
-        defaultContent: "<i>Not set</i>"
-    },
-    {
-        title: 'Stressness',
-        width: 180,
-        data: 'stressness', 
+        data: 'currency_code', 
+        className: 'dt-body-right', 
         defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Date',
         width: 180,
-        data: 'date', 
+        data: 'date_price', 
+        className: 'dt-body-right', 
+        defaultContent: "<i>Not set</i>"
+    },
+    {
+        title: 'Data Source',
+        width: 180,
+        data: 'source_name', 
+        className: 'dt-body-right', 
         defaultContent: "<i>Not set</i>"
     }
 ]
@@ -132,6 +121,7 @@ function updateTable(products) {
 
 class TableProduct extends Component {
     componentDidMount() {
+        console.log(`PRODUCT TABLE Component props: `, this.props); 
         $(this.refs.main).DataTable({
             dom: '<"data-table-wrapper5"Blfrtip>',
             data: this.props.data,

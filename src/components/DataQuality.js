@@ -4,7 +4,7 @@ import '../styles/Product.scss';
 
 function DataQuality(props){
 
-    console.log(props); 
+    console.log(`DATA QUALITY Component props: `, props); 
 
     return(
         <div className='data-quality'>
