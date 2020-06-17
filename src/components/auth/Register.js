@@ -56,6 +56,7 @@ function Register(props) {
             value={user.email}
             onChange={handleChange}
             type="email"
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -66,6 +67,7 @@ function Register(props) {
             name="password"
             value={user.password}
             onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>

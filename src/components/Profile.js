@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect} from 'react';
-import { Container, Card, CardTitle, CardSubtitle, CardHeader, Col} from 'reactstrap';
+import { Container, CardTitle, CardSubtitle, CardHeader, Col} from 'reactstrap';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
@@ -8,11 +8,13 @@ import '../styles/Profile.scss';
 import { AuthContext } from '../App.js'; 
 import { UserContext } from "../App";
 
+
 const UpdateStyles = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+
 const useStyles = makeStyles(theme => ({
     root: {
       "& > *": {
@@ -22,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-function Profile(props){
+function Profile(){
+
 
   const { axios } = useContext(AuthContext)();
   const userId = useContext(UserContext);
@@ -72,19 +75,15 @@ const handleSubmit = event => {
     return(
         <>
             <Container className='profile'>
-                <Col>
-                <Card>
-                    <CardTitle>Profile</CardTitle>
-                    <CardSubtitle></CardSubtitle>
-                    <CardHeader>Edit your profile here.</CardHeader>
-                    <UpdateStyles className={classes.root}>
-
+              <UpdateStyles onSubmit={ handleSubmit} className={classes.root}>
+                  <h1>Update Profile</h1>
                         <TextField
                         label="Name"
                         variant="outlined"
                         name="name"
                         value={user.name}
                         onChange={handleChange}
+                        type="name"
                       
                         />
                         <TextField
@@ -92,13 +91,12 @@ const handleSubmit = event => {
                         variant="outlined"
                         name="email"
                         value={user.email}
-                        onChange={handleChange}
+                        onChange={ handleChange}
                         type= "email"
+                        required
                         />
-                        <Button variant="contained" type="submit" onClick={handleSubmit}>Save Changes</Button>
+                        <Button variant="contained" color='primary' type="submit">Save Changes</Button>
                     </UpdateStyles>
-                </Card>
-                </Col>
             </Container>           
         </>
     )
