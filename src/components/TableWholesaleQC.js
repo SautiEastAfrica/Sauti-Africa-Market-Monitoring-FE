@@ -41,37 +41,29 @@ $.DataTable = require('datatables.net');
 
 const columns = [
     {
+        title: 'Category',
+        width: 180,
+        data: 'price_category',
+        defaultContent: "<i>Not set</i>"
+    },
+    {
         title: 'Country',
-        width: 120,
-        data: 'country'
+        width: 160,
+        data: 'country_code',
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Marketplace',
-        width: 180,
-        data: 'marketplace'
+        width: 160,
+        data: 'market_name',
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Product',
-        width: 180,
-        data: 'product'
-    },
-    {
-        title: 'Category',
-        width: 180,
-        data: 'category'
-    },
-    {
-        title: 'Completeness',
-        width: 180,
-        data: 'completeness',
+        width: 160,
+        data: 'product',
         defaultContent: "<i>Not set</i>"
     },
-    {
-        title: 'Timeliness',
-        width: 180,
-        data: 'timeliness', 
-        defaultContent: "<i>Not set</i>"
-    }, 
     {
         title: 'DQI',
         width: 180,
@@ -81,42 +73,74 @@ const columns = [
     {
         title: 'DQI Category',
         width: 180,
-        data: 'DQI_cat'
+        data: 'DQI_cat',
+        defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Data Length',
+        title: 'Total Data<br> Points',
         width: 180,
-        data: 'data_length'
+        data: 'data_points',
+        defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Data Points',
+        title: 'Range Of<br> Time Covered<br> (Days)',
+        width: 100,
+        data: 'data_length',
+        defaultContent: "<i>Not set</i>"
+    },
+    {
+        title: 'Dataset Completion<br> Percentage<br> (Annual)',
         width: 180,
-        data: 'data_points'
+        data: 'completeness',
+        defaultContent: "<i>Not set</i>"
+    },
+    {
+        title: 'Days Since<br> Last Update',
+        width: 180,
+        data: 'timeliness', 
+        defaultContent: "<i>Not set</i>"
     }, 
     {
         title: 'Duplicates',
         width: 180,
-        data: 'duplicates'
-    }, 
+        data: 'duplicates',
+        defaultContent: "<i>Not set</i>"
+    },  
     {
         title: 'Start Date',
         width: 180,
-        data: 'start_date'
+        data: 'start',
+        defaultContent: "<i>Not set</i>"
     }, 
     {
         title: 'End Date',
         width: 180,
-        data: 'end_date'
+        data: 'end',
+        defaultContent: "<i>Not set</i>"
     }, 
     {
         title: 'Source',
         width: 180,
-        data: 'source'
+        data: 'source_name',
+        defaultContent: "<i>Not set</i>"
     }, 
     {
         title: 'Mode D',
         width: 180,
-        data: 'mode_D'
+        data: 'mode_D',
+        defaultContent: "<i>Not set</i>"
+    }, 
+    {
+        title: 'More Details',
+        width: 180,
+        data: 'link', 
+        "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
+            }
+            return data; 
+        }, 
+        defaultContent: "<i>Not set</i>"
     }
 ];
 
@@ -135,10 +159,6 @@ function updateTable(products) {
         const newData = products.find((productData) => {
             return productData.DQI === oldData.DQI;
         });
-        
-        // insert test log here
-        console.log(products)
-        // end test log
 
         if (oldData.DQI !== newData.DQI) {
             dataChanged = true;
@@ -162,6 +182,7 @@ class TableWholesaleQC extends Component {
             ], 
             columns,
             ordering: true, 
+            "order": [[ 6, 'desc' ]],
             scrollX: true
         });
     }

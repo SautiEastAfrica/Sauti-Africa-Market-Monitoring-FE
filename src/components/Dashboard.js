@@ -24,9 +24,10 @@ function Dashboard(){
           await axios.get(`https://sautimarket.herokuapp.com/retail/data/latest`) 
           .then(response => {
               console.log(response.data); 
-              setRetail(response.data);
+              var tempArray = response.data; 
+              addLink(tempArray); 
+              setRetail(tempArray);
               console.log(retailData); 
-
               })
           .catch(error => {
               console.log(error); 
@@ -37,7 +38,9 @@ function Dashboard(){
         await axios.get(`https://sautimarket.herokuapp.com/retail/quality`) 
         .then(response => {
             console.log(response.data); 
-            setRetailQC(response.data);
+            var tempArray = response.data; 
+            addLink(tempArray); 
+            setRetailQC(tempArray);
             console.log(retailQC); 
             })
         .catch(error => {
@@ -55,10 +58,10 @@ function Dashboard(){
         async function getWholesale () { 
           await axios.get(`https://sautimarket.herokuapp.com/wholesale/data/latest`) 
           .then(response => {
-              console.log(response.data); 
-              setWholesale(response.data);
+              var tempArray = response.data; 
+              addLink(tempArray); 
+              setWholesale(tempArray);
               console.log(wholesaleData); 
-
               })
           .catch(error => {
               console.log(error); 
@@ -69,7 +72,9 @@ function Dashboard(){
         await axios.get(`https://sautimarket.herokuapp.com/wholesale/quality`) 
         .then(response => {
             console.log(response.data); 
-            setWholesaleQC(response.data);
+            var tempArray = response.data; 
+            addLink(tempArray); 
+            setWholesaleQC(tempArray);
             console.log(wholesaleQC); 
             })
         .catch(error => {
@@ -82,6 +87,14 @@ function Dashboard(){
 
       }, []) 
   
+      function addLink(productArray){
+          productArray.map(function(object){
+            object.link = `http://localhost:3000/product/${object.category}/${object.country}/${object.marketplace}/${object.product}`; 
+            return object; 
+          })
+          return productArray;         
+      }
+
     return(
         <div>
             <TableRetail data={retailData}/>

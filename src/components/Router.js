@@ -28,7 +28,8 @@ return(
                         <Route path="/logout" component={Logout}/>
                         <Route path="/dashboard" component={Dashboard}/>
                         <Route path="/profile" component={Profile}/>
-                        <Route path="/product" component={Product}/>
+                        <Route exact path="/product" component={Product}/>
+                        <Route path="/product/:category/:country/:market/:product" component={Product}/>
                         <Redirect to="/dashboard" />
                     </Switch>
                 </PrivateRoute>
