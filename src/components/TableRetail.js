@@ -41,64 +41,78 @@ $.DataTable = require('datatables.net');
 
 const columns = [
     {
+        title: 'Category',
+        width: 180,
+        data: 'price_category', 
+        defaultContent: "<i>Not set</i>"
+    },
+    {
         title: 'Country',
         width: 120,
-        data: 'country'
+        data: 'country_code', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Marketplace',
         width: 180,
-        data: 'marketplace'
+        data: 'market_name', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Product',
         width: 180,
-        data: 'product'
-    },
-    {
-        title: 'Category',
-        width: 180,
-        data: 'category'
-    },
-    {
-        title: 'Price',
-        width: 180,
-        data: 'price',
+        data: 'product_name', 
         defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Currency',
         width: 180,
-        data: 'currency'
-    },
-    {
-        title: 'Method',
-        width: 180,
-        data: 'method', 
+        data: 'currency_code', 
         defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Phase',
+        title: 'Price',
         width: 180,
-        data: 'phase'
+        data: 'observed_price',
+        defaultContent: "<i>Not set</i>"
     },
     {
-        title: 'Stressness',
+        title: 'ARIMA Phase',
         width: 180,
-        data: 'stressness'
+        data: 'observed_arima_alps_class', 
+        defaultContent: "<i>Not set</i>"
+    },
+    {
+        title: 'ALPS Phase',
+        width: 180,
+        data: 'observed_alps_class', 
+        defaultContent: "<i>Not set</i>"
+    },
+    {
+        title: 'ALPS Method',
+        width: 180,
+        data: 'alps_type_method', 
+        defaultContent: "<i>Not set</i>"
     },
     {
         title: 'Date',
         width: 180,
-        data: 'date'
+        data: 'date_price', 
+        defaultContent: "<i>Not set</i>"
+    }, 
+    {
+        title: 'Data Source',
+        width: 180,
+        data: 'source_name', 
+        defaultContent: "<i>Not set</i>"
     }, 
     {
         title: 'More Details',
         width: 180,
-        data: 'weblink', 
+        data: 'link', 
         "render": function(data, type, row, meta){
             if(type === 'display'){
-                data = '<a href="' + row.myid + '">' + data + '</a>'; 
+                data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
             }
             return data; 
         }, 
@@ -142,7 +156,8 @@ class TableRetail extends Component {
             'copy', 'csv', 'excel', 'pdf', 'print'
             ], 
             columns,
-            ordering: true
+            ordering: true, 
+            "order": [[ 6, 'asc' ]]
         });
     }
     

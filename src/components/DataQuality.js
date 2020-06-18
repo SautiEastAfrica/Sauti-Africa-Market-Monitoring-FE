@@ -18,7 +18,7 @@ function DataQuality(props){
             <span><h2>Min Price: </h2> {props.data.min_price}</span>
             <span><h2>Max Price: </h2> {props.data.max_price}</span>
             <span><h2>Mean: </h2> {props.data.mean}</span>
-            <span><h2>Mode D: </h2> {props.data.mode_d}</span>
+            <span><h2>Mode D: </h2> {props.data.Mode_D}</span>
             <span><h2>Number Of Observations: </h2> {props.data.number_of_observations}</span>
         </div>
     )
