@@ -6,7 +6,37 @@ import TableWholesaleQC from './TableWholesaleQC';
 
 import { AuthContext } from '../App.js'; 
 
+import "antd/dist/antd.css";
+
+import {
+    DesktopOutlined,
+    PieChartOutlined,
+    FileOutlined,
+    TeamOutlined,
+    UserOutlined,
+  } from '@ant-design/icons';
+import { Layout, Menu, Breadcrumb } from 'antd'; 
+const { SubMenu } = Menu;
+const { Header, Content, Footer, Sider } = Layout; 
+
+// class SiderDemo extends React.Component {
+//     state = {
+//       collapsed: false,
+//     };
+  
+//     onCollapse = collapsed => {
+//       console.log(collapsed);
+//       this.setState({ collapsed });
+//     };
+
 function Dashboard(){
+
+    const [collapsed, setCollapsed] = useState(false); 
+
+    const onCollapse = () => {
+        console.log(collapsed); 
+        setCollapsed({ collapsed })
+    }
 
     const { axios } = useContext(AuthContext)();
 
@@ -39,7 +69,7 @@ function Dashboard(){
         .then(response => {
             console.log(response.data); 
             var tempArray = response.data; 
-            addLink(tempArray); 
+            addQCLink(tempArray); 
             setRetailQC(tempArray);
             console.log(retailQC); 
             })
@@ -73,7 +103,7 @@ function Dashboard(){
         .then(response => {
             console.log(response.data); 
             var tempArray = response.data; 
-            addLink(tempArray); 
+            addQCLink(tempArray); 
             setWholesaleQC(tempArray);
             console.log(wholesaleQC); 
             })
@@ -89,19 +119,62 @@ function Dashboard(){
   
       function addLink(productArray){
           productArray.map(function(object){
-            object.link = `http://localhost:3000/product/${object.category}/${object.country}/${object.marketplace}/${object.product}`; 
+            object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product_name}`; 
             return object; 
           })
           return productArray;         
       }
 
+     function addQCLink(productArray){
+        productArray.map(function(object){
+          object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product}`; 
+          return object; 
+        })
+        return productArray;         
+    }
+
     return(
-        <div>
-            <TableRetail data={retailData}/>
-            <TableWholesale data={wholesaleData}/>
-            <TableRetailQC data={retailQC}/>
-            <TableWholesaleQC data={wholesaleQC}/>
-        </div>
+        <Layout style={{ minHeight: '100vh' }}>
+                <Sider collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)}>
+                <div className="logo" />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    Dashboard
+                    </Menu.Item>
+                    <Menu.Item key="2" icon={<DesktopOutlined />}>
+                    Data Quality
+                    </Menu.Item>
+                    <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+                    <Menu.Item key="3">Tom</Menu.Item>
+                    <Menu.Item key="4">Bill</Menu.Item>
+                    <Menu.Item key="5">Alex</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
+                    <Menu.Item key="6">Product</Menu.Item>
+                    <Menu.Item key="8">Team 2</Menu.Item>
+                    </SubMenu>
+                    <Menu.Item key="9" icon={<FileOutlined />} />
+                </Menu>
+                </Sider>
+
+                <Layout className="site-layout">
+                <Header className="site-layout-background" style={{ padding: 0 }} />
+                <Content style={{ margin: '0 16px' }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+                    <Breadcrumb.Item>Product Search</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        <TableRetail data={retailData}/>
+                        <TableWholesale data={wholesaleData}/>
+                        <TableRetailQC data={retailQC}/>
+                        <TableWholesaleQC data={wholesaleQC}/>                    
+
+                    </div>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                </Layout>
+            </Layout>
     )
 }
 

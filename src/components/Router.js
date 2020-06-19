@@ -8,6 +8,10 @@ import Register from './auth/Register';
 import Product from './Product'; 
 import Home from './Home'; 
 
+import { NormalLoginForm } from '../components/auth/Login'; 
+import "antd/dist/antd.css";
+
+
 import PrivateRoute from './auth/PrivateRoute'; 
 import Dashboard from './Dashboard'; 
 import Profile from './Profile'; 

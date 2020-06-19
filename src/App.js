@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 import Router from "./components/Router";
+
+import './App.css'; 
 
 class App extends Component {
   constructor() {
