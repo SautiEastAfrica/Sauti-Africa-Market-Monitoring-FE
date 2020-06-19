@@ -15,6 +15,7 @@ import '../styles/Product.scss';
 
 function Product(){
     
+    console.log(useParams()); 
     let { category = 'retail', country = 'TZA', market = 'Arusha', product = 'Morogoro+Rice' } = useParams(); 
     // const [url, setUrl] = useState({ category: category, country: country, market: market, product: product })
 
