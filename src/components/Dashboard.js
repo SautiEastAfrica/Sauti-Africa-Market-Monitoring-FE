@@ -39,7 +39,7 @@ function Dashboard(){
         .then(response => {
             console.log(response.data); 
             var tempArray = response.data; 
-            addLink(tempArray); 
+            addQCLink(tempArray); 
             setRetailQC(tempArray);
             console.log(retailQC); 
             })
@@ -47,7 +47,6 @@ function Dashboard(){
             console.log(error); 
         })
     }
-    
           getRetail(); 
           getRetailQC(); 
 
@@ -73,7 +72,7 @@ function Dashboard(){
         .then(response => {
             console.log(response.data); 
             var tempArray = response.data; 
-            addLink(tempArray); 
+            addQCLink(tempArray); 
             setWholesaleQC(tempArray);
             console.log(wholesaleQC); 
             })
@@ -89,20 +88,28 @@ function Dashboard(){
   
       function addLink(productArray){
           productArray.map(function(object){
-            object.link = `http://localhost:3000/product/${object.category}/${object.country}/${object.marketplace}/${object.product}`; 
+            object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product_name}`; 
             return object; 
           })
           return productArray;         
       }
+
+     function addQCLink(productArray){
+        productArray.map(function(object){
+          object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product}`; 
+          return object; 
+        })
+        return productArray;         
+    }
 
     return(
         <div>
             <TableRetail data={retailData}/>
             <TableWholesale data={wholesaleData}/>
             <TableRetailQC data={retailQC}/>
-            <TableWholesaleQC data={wholesaleQC}/>
+            <TableWholesaleQC data={wholesaleQC}/>                    
         </div>
     )
 }
 
-export default Dashboard; 
+export default Dashboard;

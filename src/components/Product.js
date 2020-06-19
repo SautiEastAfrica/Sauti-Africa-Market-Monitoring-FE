@@ -7,6 +7,8 @@ import Summary from './Summary';
 import TableProduct from './TableProduct'; 
 import DataQuality from './DataQuality'; 
 
+import { Card } from 'antd'; 
+
 import { AuthContext } from '../App.js'; 
 
 import '../styles/Product.scss'; 
@@ -14,7 +16,7 @@ import '../styles/Product.scss';
 function Product(){
     
     let { category = 'retail', country = 'TZA', market = 'Arusha', product = 'Morogoro+Rice' } = useParams(); 
-    const [url, setUrl] = useState({ category: category, country: country, market: market, product: product })
+    // const [url, setUrl] = useState({ category: category, country: country, market: market, product: product })
 
     const { axios } = useContext(AuthContext)();
 
@@ -22,18 +24,15 @@ function Product(){
 
     const [quality, setQuality] = useState({ completeness: '', start_date: '', end_date: '', DQI: '', DQI_cat: '', number_of_observations: '', days_between_start_end: '', min_price: '', max_price: '', mode_d: '', mean: '' }); 
 
-    const [history, setHistory] = useState([{  }]); 
-
-    // alert_band_limit: null, class: null, country: "TZA", currency: "KES", 
-    // data_run_model: null, date: "17-03-22", forecasted_class: null, forecasted_price: null, 
-    // forecasting_model: null, market_id: "Arusha : TZA", marketplace: "Arusha", method: null, 
-    // normal_band_limit: null, price: 79, product_name: "Kilombero Rice", source_id: 1, source_name: "EAGC-RATIN", stress_band_limit: null, stressness: -1, unit: "kg"
+    const [history, setHistory] = useState([{ alert_band_limit: null, class: null, country: "TZA", currency: "KES", 
+    data_run_model: null, date: "17-03-22", forecasted_class: null, forecasted_price: null, 
+    forecasting_model: null, market_id: "Arusha : TZA", marketplace: "Arusha", method: null, 
+    normal_band_limit: null, price: 79, product_name: "Kilombero Rice", source_id: 1, source_name: "EAGC-RATIN", stress_band_limit: null, stressness: -1, unit: "kg" }]); 
 
     useEffect(() => {
 
         async function getData () { 
-            console.log(url); 
-            await axios.get(`https://sautimarket.herokuapp.com/${url.category}/?country=${url.country}&market=${url.market}&product=${url.product}`) 
+            await axios.get(`https://sautimarket.herokuapp.com/${category}/?country=${country}&market=${market}&product=${product}`) 
             .then(response => {
                 console.log(response); 
                 var data = response.data.history; 
@@ -48,7 +47,8 @@ function Product(){
             })
         }
             getData(); 
-      }, [url])
+
+      }, [])
 
       useEffect(()=>{
 
@@ -70,12 +70,12 @@ function Product(){
 
     return(
         <div className='product'>
-                {/* <ProductSearch/>
+                {/* <ProductSearch /> */}
                 <Summary data={summary}/>
                 <DataQuality data={quality}/>
                 <LineChart history={history} summary={summary} quality={quality} />
-                <TableProduct data={history}/> */}
-                {/* <Methodology/> */}
+                <TableProduct data={history}/>
+                {/* {/* <Methodology/> */}
         </div>
     )
 }

@@ -6,7 +6,7 @@ import '../styles/Header.scss';
 import { AppContext } from '../App'; 
 
 function Header(props){
-
+    
     const app = useContext(AppContext);
     const { user } = app.state;
 

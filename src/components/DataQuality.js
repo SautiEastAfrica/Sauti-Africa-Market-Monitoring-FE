@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Card, Descriptions } from 'antd';
 
 import '../styles/Product.scss'; 
 
@@ -7,20 +8,22 @@ function DataQuality(props){
     console.log(`DATA QUALITY Component props: `, props); 
 
     return(
-        <div className='data-quality'>
-            <h1>Data Quality</h1> 
-            <span><h2>Start Date: </h2> {props.data.start_date}</span>
-            <span><h2>End Date: </h2> {props.data.end_date}</span>
-            <span><h2>DQI: </h2> {props.data.DQI}</span>
-            <span><h2>DQI Category: </h2> {props.data.DQI_cat}</span>
-            <span><h2>Completeness: </h2> {props.data.completeness}</span>
-            <span><h2>Days between start/end: </h2> {props.data.days_between_start_end}</span>
-            <span><h2>Min Price: </h2> {props.data.min_price}</span>
-            <span><h2>Max Price: </h2> {props.data.max_price}</span>
-            <span><h2>Mean: </h2> {props.data.mean}</span>
-            <span><h2>Mode D: </h2> {props.data.Mode_D}</span>
-            <span><h2>Number Of Observations: </h2> {props.data.number_of_observations}</span>
-        </div>
+        <>
+        <Card hoverable='true'>
+            <Descriptions title="Data Quality" bordered>
+                <Descriptions.Item label="DQI">{props.data.DQI}</Descriptions.Item>
+                <Descriptions.Item label="DQI Category">{props.data.DQI_cat}</Descriptions.Item>
+                <Descriptions.Item label="Annual % Complete">{props.data.completeness}</Descriptions.Item>
+                <Descriptions.Item label="Beginning Date Of Data">{props.data.start_date}</Descriptions.Item>
+                <Descriptions.Item label="Last Date Of Data">{props.data.end_date}</Descriptions.Item>
+                <Descriptions.Item label="Minimum Price">{props.data.min_price}</Descriptions.Item>
+                <Descriptions.Item label="Maximum Price">{props.data.max_price}</Descriptions.Item>
+                <Descriptions.Item label="Mean">{props.data.mean}</Descriptions.Item>
+                <Descriptions.Item label="Mode D">{props.data.Mode_D}</Descriptions.Item>
+                <Descriptions.Item label="# Of Observations">{props.data.number_of_observations}</Descriptions.Item>
+            </Descriptions>
+        </Card>
+        </>
     )
 }
 
