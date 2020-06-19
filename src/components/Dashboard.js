@@ -88,7 +88,7 @@ function Dashboard(){
   
       function addLink(productArray){
           productArray.map(function(object){
-            object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product_name}`; 
+            object.link = `https://master.d2p16mt6y3bvx5.amplifyapp.com/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product_name}`; 
             return object; 
           })
           return productArray;         
@@ -96,7 +96,7 @@ function Dashboard(){
 
      function addQCLink(productArray){
         productArray.map(function(object){
-          object.link = `http://localhost:3000/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product}`; 
+          object.link = `https://master.d2p16mt6y3bvx5.amplifyapp.com/product/${object.price_category}/${object.country_code}/${object.market_name}/${object.product}`; 
           return object; 
         })
         return productArray;         
