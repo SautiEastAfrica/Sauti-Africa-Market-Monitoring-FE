@@ -7,6 +7,8 @@ import Summary from './Summary';
 import TableProduct from './TableProduct'; 
 import DataQuality from './DataQuality'; 
 
+import { Card } from 'antd'; 
+
 import { AuthContext } from '../App.js'; 
 
 import '../styles/Product.scss'; 
@@ -68,11 +70,11 @@ function Product(){
 
     return(
         <div className='product'>
+                {/* <ProductSearch /> */}
                 <Summary data={summary}/>
                 <DataQuality data={quality}/>
-                <ProductSearch />
                 <LineChart history={history} summary={summary} quality={quality} />
-                <TableProduct data={history}/> */}
+                <TableProduct data={history}/>
                 {/* {/* <Methodology/> */}
         </div>
     )

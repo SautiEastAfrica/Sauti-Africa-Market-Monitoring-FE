@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../App.js'; 
 
+import { Form, Input, Checkbox, Button, Select } from 'antd';
+
 function ProductSearch(){
 
     const { axios } = useContext(AuthContext)();
@@ -15,14 +17,17 @@ function ProductSearch(){
     const [markets, setMarkets] = useState([]); 
     const [products, setProducts] = useState([]); 
 
+    const [category, setCategory] = useState([]);
     const [country, setCountry] = useState([]); 
     const [market, setMarket] = useState([]); 
     const [product, setProduct] = useState([]); 
 
+    const { Option } = Select;
+
     useEffect(() => {
         axios.get(`https://sauti2-app.herokuapp.com/availablepairs/`)
         .then(response => {
-            console.log(response); 
+            console.log(`Available Pairs: '`, response); 
             setCategories(response.data); 
         })
         .catch(error => {
@@ -35,12 +40,83 @@ function ProductSearch(){
     }
 
     function handleSubmit(){
-        // history.push(`http://localhost:3000/product/${country}/${market}/${product}`)
+        history.push(`http://localhost:3000/product/${category}/${country}/${market}/${product}`)
     }
 
+
+        // Starts here
+            function onChange(value) {
+            console.log(`selected ${value}`);
+            }
+
+            function onBlur() {
+            console.log('blur');
+            }
+
+            function onFocus() {
+            console.log('focus');
+            }
+
+            function onSearch(val) {
+            console.log('search:', val);
+            }
+        // Ends here
+
     return(
-        <div className='product-search'>
-            <h1>Product Search</h1>
+        <div>
+            <Form>
+                <h1>Product Search</h1>
+                {/* Starts Here */}
+                <Form.Item>
+                    <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select a category"
+                        optionFilterProp="children"
+                        onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option value="category1">Category 1</Option>
+                        <Option value="category2">Category 2</Option>
+                        <Option value="category3">Category 3</Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item>
+                    <Select
+                        style={{ width: 200 }}
+                        placeholder='Select a country'>
+                        <Option>Country</Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item>
+                    <Select
+                        style={{ width: 200 }}
+                        placeholder='Select a market'
+                    >
+                        <Option>Market</Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item>
+                <Select
+                    style={{ width: 200 }}
+                    placeholder='Select a product'
+                >
+                        <Option>Product</Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+                    <Button type="primary" htmlType="submit">
+                        Search
+                    </Button>
+                </Form.Item>
+            </Form>
+        {/* Ends Here */}
+{/* 
 
             <form className='filter'>
                 <label>Select the country, marketplace, & product to view: </label>
@@ -48,7 +124,7 @@ function ProductSearch(){
                     <option key={category} value={category}>Wholesale</option>
                     <option key={category} value={category}>Retail</option>
                 </select> */}
-                <select onChange={handleChange()}>
+                {/* <select onChange={handleChange()}>
                     {categories &&
                     categories.length > 0 &&
                     categories.map(category => {
@@ -79,7 +155,7 @@ function ProductSearch(){
 
                 <button onClick={handleSubmit}>Get Product Info</button>
 
-            </form>
+            </form> */}
         </div>
     )
 }

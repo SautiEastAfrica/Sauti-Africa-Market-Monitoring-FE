@@ -20,14 +20,16 @@ function Summary(props){
 
     return (
       <>
-        <Descriptions title="Product Summary" bordered>
-            <Descriptions.Item label="Country">{props.data.country_code}</Descriptions.Item>
-            <Descriptions.Item label="Market">{props.data.market_name}</Descriptions.Item>
-            <Descriptions.Item label="Product">{props.data.product_name}</Descriptions.Item>
-            <Descriptions.Item label="Last Documented Price">{props.data.observed_price}</Descriptions.Item>
-            <Descriptions.Item label="Currency">{props.data.currency_code}</Descriptions.Item>
-            <Descriptions.Item label="Date">{props.data.date_price}</Descriptions.Item>
-        </Descriptions>
+        <Card hoverable='true'>
+          <Descriptions title="Product Summary" bordered>
+              <Descriptions.Item label="Country">{props.data.country_code}</Descriptions.Item>
+              <Descriptions.Item label="Market">{props.data.market_name}</Descriptions.Item>
+              <Descriptions.Item label="Product">{props.data.product_name}</Descriptions.Item>
+              <Descriptions.Item label="Last Documented Price">{props.data.observed_price}</Descriptions.Item>
+              <Descriptions.Item label="Currency">{props.data.currency_code}</Descriptions.Item>
+              <Descriptions.Item label="Date">{props.data.date_price}</Descriptions.Item>
+          </Descriptions>
+        </Card>
       </>
     );
   }
