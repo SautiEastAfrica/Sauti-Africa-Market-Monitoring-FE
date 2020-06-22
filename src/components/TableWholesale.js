@@ -113,12 +113,12 @@ const columns = [
         title: 'More Details',
         width: 180,
         data: 'link', 
-        "render": function(data, type, row, meta){
-            if(type === 'display'){
-                data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
-            }
-            return data; 
-        }, 
+        // "render": function(data, type, row, meta){
+        //     if(type === 'display'){
+        //         data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
+        //     }
+        //     return data; 
+        // }, 
         defaultContent: "<i>Not set</i>"
     }
 ];
