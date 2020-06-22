@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FormGroup, Spinner } from "reactstrap";
-// import { Form, Button } from "reactstrap";
 import { Link } from 'react-router-dom'; 
 import { TextField } from '@material-ui/core'; 
 
@@ -153,46 +152,6 @@ function Login(props) {
       </Card>
       </div>
       {/* Ends here */}
-
-      {/* <Form className="form auth-form" onSubmit={handleSubmit}>
-        <FormGroup>
-          {/* <Label for="email">email</Label> */}
-          {/* <TextField
-            variant="outlined"
-            label="Email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            type="email"
-            id="email"
-          />
-          <span className="error">{errors.email && errors.email.message}</span>
-        </FormGroup>
-        <FormGroup>
-          <TextField
-            variant="outlined"
-            label="password"
-            className="form-control"
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            id="password"
-          />
-          <span className="error">
-            {errors.password && errors.password.message}
-          </span>
-        </FormGroup>
-        
-        {!loading && (
-          <>  
-            <Button type="submit" color="primary" size="lg">
-              Login
-            </Button>
-          </>
-        )}
-        {loading && <Spinner color="primary"/>}
-      </Form> */}
     </>
   );
 }
