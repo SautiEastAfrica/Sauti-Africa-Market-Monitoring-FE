@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'; 
+import { useHistory } from 'react-router-dom'; 
 import TableRetail from './TableRetail'; 
 import TableRetailQC from './TableRetailQC'; 
 import TableWholesale from './TableWholesale'; 
@@ -8,6 +9,7 @@ import { AuthContext } from '../App.js';
 
 function Dashboard(){
 
+    const history = useHistory(); 
     const { axios } = useContext(AuthContext)();
 
     const [retailData, setRetail] = useState([{ country: '', marketplace: '', product: '', currency: '', price: '1', category: '', phase: '',  stressness: '', date: ''}]); 
@@ -104,7 +106,7 @@ function Dashboard(){
 
     return(
         <div>
-            <TableRetail data={retailData}/>
+            <TableRetail data={retailData} goto={x => history.push(x)} />
             <TableWholesale data={wholesaleData}/>
             <TableRetailQC data={retailQC}/>
             <TableWholesaleQC data={wholesaleQC}/>                    
