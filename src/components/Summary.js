@@ -22,6 +22,7 @@ function Summary(props){
       <>
         <Card hoverable='true'>
           <Descriptions title="Product Summary" bordered>
+              <Descriptions.Item label="Category">{props.data.category}</Descriptions.Item>
               <Descriptions.Item label="Country">{props.data.country_code}</Descriptions.Item>
               <Descriptions.Item label="Market">{props.data.market_name}</Descriptions.Item>
               <Descriptions.Item label="Product">{props.data.product_name}</Descriptions.Item>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'; 
+import ReactDOM from 'react-dom'; 
+import { useHistory } from 'react-router-dom'; 
 import PropTypes from 'prop-types'; 
 
 // require all styling buttons
@@ -110,15 +112,16 @@ const columns = [
         title: 'More Details',
         width: 180,
         data: 'link', 
-        "render": function(data, type, row, meta){
-            if(type === 'display'){
-                data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
-            }
-            return data; 
-        }, 
+        // "render": function(data, type, row, meta){
+        //     if(type === 'display'){
+        //         data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
+        //     }
+        //     return data; 
+        // }, 
         defaultContent: "<i>Not set</i>"
     }
 ];
+
 
 function reloadTableData(names) {
     const table = $('.data-table-wrapper').find('table').DataTable();
@@ -148,6 +151,7 @@ function updateTable(products) {
 }
 
 class TableRetail extends Component {
+    
     componentDidMount() {
         $(this.refs.main).DataTable({
             dom: '<"data-table-wrapper"Blfrtip>',
@@ -157,7 +161,17 @@ class TableRetail extends Component {
             ], 
             columns,
             ordering: true, 
-            "order": [[ 6, 'asc' ]]
+            "order": [[ 6, 'asc' ]], 
+            columnDefs: [{
+                targets: 11, 
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <a style={{ cursor: 'pointer' }}
+                            onClick={() => this.props.goto(cellData) }>
+                                Product Details
+                            <i className="icon-fontello-edit"></i>
+                        </a>, td),
+            }], 
         });
     }
     
