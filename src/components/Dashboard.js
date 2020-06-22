@@ -107,9 +107,9 @@ function Dashboard(){
     return(
         <div>
             <TableRetail data={retailData} goto={x => history.push(x)} />
-            <TableWholesale data={wholesaleData}/>
-            <TableRetailQC data={retailQC}/>
-            <TableWholesaleQC data={wholesaleQC}/>                    
+            <TableWholesale data={wholesaleData} goto={x => history.push(x)} />
+            <TableRetailQC data={retailQC} goto={x => history.push(x)} />
+            <TableWholesaleQC data={wholesaleQC} goto={x => history.push(x)} />    
         </div>
     )
 }

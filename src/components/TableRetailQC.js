@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import ReactDOM from 'react-dom'; 
 import PropTypes from 'prop-types'; 
 
 // require all styling buttons
@@ -187,7 +188,17 @@ class TableRetailQC extends Component {
             columns,
             ordering: true,
             "order": [[ 6, 'desc' ]],
-            scrollX: true
+            scrollX: true, 
+            columnDefs: [{
+                targets: 11, 
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <a style={{ cursor: 'pointer' }}
+                            onClick={() => this.props.goto(cellData) }>
+                                Product Details
+                            <i className="icon-fontello-edit"></i>
+                        </a>, td),
+            }], 
         });
     }
     

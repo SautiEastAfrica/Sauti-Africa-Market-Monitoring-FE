@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import PropTypes from 'prop-types'; 
+import ReactDOM from 'react-dom'; 
 
 // require all styling buttons
 import * as jzip from 'jszip';
@@ -156,7 +157,17 @@ class TableWholesale extends Component {
             data: this.props.data,
             columns,
             ordering: true, 
-            "order": [[ 6, 'asc' ]]
+            "order": [[ 6, 'asc' ]], 
+            columnDefs: [{
+                targets: 11, 
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <a style={{ cursor: 'pointer' }}
+                            onClick={() => this.props.goto(cellData) }>
+                                Product Details
+                            <i className="icon-fontello-edit"></i>
+                        </a>, td),
+            }], 
         });
     }
     
