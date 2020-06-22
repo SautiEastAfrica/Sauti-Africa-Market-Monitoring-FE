@@ -72,7 +72,7 @@ function Product(){
     return(
         <div className='product'>
                 {/* <ProductSearch /> */}
-                <Summary data={summary}/>
+                <Summary data={summary} quality={quality} />
                 <DataQuality data={quality}/>
                 <LineChart history={history} summary={summary} quality={quality} />
                 <TableProduct data={history}/>
