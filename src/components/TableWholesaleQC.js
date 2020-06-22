@@ -135,12 +135,12 @@ const columns = [
         title: 'More Details',
         width: 180,
         data: 'link', 
-        "render": function(data, type, row, meta){
-            if(type === 'display'){
-                data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
-            }
-            return data; 
-        }, 
+        // "render": function(data, type, row, meta){
+        //     if(type === 'display'){
+        //         data = '<a href="' + row.link + '">' + 'More Info' + '</a>'; 
+        //     }
+        //     return data; 
+        // }, 
         defaultContent: "<i>Not set</i>"
     }
 ];
@@ -186,7 +186,7 @@ class TableWholesaleQC extends Component {
             "order": [[ 6, 'desc' ]],
             scrollX: true, 
             columnDefs: [{
-                targets: 11, 
+                targets: 15, 
                 createdCell: (td, cellData, rowData, row, col) =>
                     ReactDOM.render(
                         <a style={{ cursor: 'pointer' }}
