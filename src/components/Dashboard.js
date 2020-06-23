@@ -67,9 +67,11 @@ function Dashboard(){
       async function getWholesaleQC () { 
         await axios.get(`https://sautimarket.herokuapp.com/wholesale/quality`) 
         .then(response => {
+            console.log(response)
             var tempArray = response.data; 
             addQCLink(tempArray); 
             setWholesaleQC(tempArray);
+
             })
         .catch(error => {
             console.log(error); 
