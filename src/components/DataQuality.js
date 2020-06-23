@@ -9,7 +9,7 @@ function DataQuality(props){
 
     return(
         <>
-        <Card hoverable='true'>
+        <Card hoverable='true' style={{ width: '86%'}}>
             <Descriptions title="Data Quality" bordered>
                 <Descriptions.Item label="DQI">{props.data.DQI}</Descriptions.Item>
                 <Descriptions.Item label="DQI Category">{props.data.DQI_cat}</Descriptions.Item>
