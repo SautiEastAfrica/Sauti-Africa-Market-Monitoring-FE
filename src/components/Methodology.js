@@ -108,8 +108,7 @@ return(
         title='Methodology'
         style={{ width:'86%'}}
         bordered='true'
-        hoverable='true'
-    >
+        >
         { contentList[tabKey.key] } 
     </Card>
     )
