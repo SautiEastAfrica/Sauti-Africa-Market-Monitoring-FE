@@ -25,11 +25,9 @@ function Dashboard(){
         async function getRetail () { 
           await axios.get(`https://sautimarket.herokuapp.com/retail/data/latest`) 
           .then(response => {
-              console.log(response.data); 
               var tempArray = response.data; 
               addLink(tempArray); 
               setRetail(tempArray);
-              console.log(retailData); 
               })
           .catch(error => {
               console.log(error); 
@@ -39,11 +37,9 @@ function Dashboard(){
       async function getRetailQC () { 
         await axios.get(`https://sautimarket.herokuapp.com/retail/quality`) 
         .then(response => {
-            console.log(response.data); 
             var tempArray = response.data; 
             addQCLink(tempArray); 
             setRetailQC(tempArray);
-            console.log(retailQC); 
             })
         .catch(error => {
             console.log(error); 
@@ -62,7 +58,6 @@ function Dashboard(){
               var tempArray = response.data; 
               addLink(tempArray); 
               setWholesale(tempArray);
-              console.log(wholesaleData); 
               })
           .catch(error => {
               console.log(error); 
@@ -72,11 +67,9 @@ function Dashboard(){
       async function getWholesaleQC () { 
         await axios.get(`https://sautimarket.herokuapp.com/wholesale/quality`) 
         .then(response => {
-            console.log(response.data); 
             var tempArray = response.data; 
             addQCLink(tempArray); 
             setWholesaleQC(tempArray);
-            console.log(wholesaleQC); 
             })
         .catch(error => {
             console.log(error); 

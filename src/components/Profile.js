@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { Card, CardTitle, CardHeader } from 'reactstrap';
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
@@ -10,20 +9,6 @@ import '../styles/Profile.scss';
 import { AuthContext } from '../App.js'; 
 import { UserContext } from "../App";
 
-const UpdateStyles = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const useStyles = makeStyles(theme => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: 200
-      }
-    }
-  }));
-
 function Profile(props){
 
   const { axios } = useContext(AuthContext)();
@@ -32,7 +17,6 @@ function Profile(props){
 
   const [user, setUser] = useState({name: "", email:""});
   const [changed, setChanged]= useState("")
-  const classes = useStyles();
 
   useEffect(() => {
     function getUser(){
