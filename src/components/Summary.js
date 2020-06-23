@@ -6,7 +6,7 @@ function Summary(props){
 
     return (
       <>
-        <Card hoverable='true'>
+        <Card hoverable='true' style={{ width: '86%' }}>
           <Descriptions title="Product Summary" bordered>
               <Descriptions.Item label="Price Category">{props.quality.price_category}</Descriptions.Item>
               <Descriptions.Item label="Product Category">{props.quality.product_category}</Descriptions.Item>
