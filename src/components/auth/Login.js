@@ -1,16 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { FormGroup, Spinner } from "reactstrap";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom'; 
-import { TextField } from '@material-ui/core'; 
+import { Card, Form, Input, Checkbox, Button } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import { AuthContext } from "../../App";
 
 import './_auth-form.scss'; 
 // import "antd/dist/antd.css";
-
-import { Card, Form, Input, Checkbox, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 function Login(props) {
 
@@ -18,49 +14,13 @@ function Login(props) {
   console.log(form); 
 
   const { axios, login } = useContext(AuthContext)();
-
   const [user, setUser] = useState({ email: '', password: '' })
 
-  const [loading, setLoading] = useState(false);
-
   const { history } = props;
-  
-  const { errors, setError } = useForm();
 
   function handleChange(e){
     form.setFieldsValue({ [e.target.name]: e.target.value })
     console.log(form.values); 
-  }
-
-  function handleSubmit(e){
-    e.preventDefault(); 
-    setLoading(true);
-    
-    axios
-      .post("/auth/login", user)
-      .then(response => {
-        console.log(response)
-        const data = response.data;
-        login(data);
-        history.push("/dashboard");
-      })
-      .catch(({ response }) => {
-        if (response.status === 401) {
-            console.log(response); 
-          setError(
-            "password",
-            "unauthorized",
-            "There was a problem with your login info"
-          );
-        } else {
-            console.log(response); 
-          setError(
-            "password",
-            "login_problem",
-            "There was a problem logging in"
-          );
-        }
-      });
   }
 
   function onFinish(values) {
@@ -86,12 +46,9 @@ function Login(props) {
 
   return (
     <>
-
-    {/* Starts here */}
       <div className='login-container'>
         <Card 
-          title='Log In'
-          hoverable='true'>
+          title='Log In'>
           <Form
             name="normal_login"
             className="login-form"
@@ -137,7 +94,7 @@ function Login(props) {
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
 
-              <a className="login-form-forgot" href="">
+              <a className="login-form-forgot" href="/register">
                 Forgot password
               </a>
             </Form.Item>
@@ -151,7 +108,6 @@ function Login(props) {
           </Form>
       </Card>
       </div>
-      {/* Ends here */}
     </>
   );
 }

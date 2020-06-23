@@ -153,7 +153,7 @@ class TableProduct extends Component {
             <div className='tableData'>
                 <h1>Product History</h1>
                 <hr/>
-                <table ref="main" width="100%" id="example5" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example5" className="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }

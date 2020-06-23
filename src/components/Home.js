@@ -8,7 +8,7 @@ function Home (){
 
     return(
         <div>
-            <img src={require('../images/sauti-2.jpg')}/>
+            <img alt='logo' src={require('../images/sauti-2.jpg')}/>
 
             <div className='home'>
    
@@ -21,9 +21,9 @@ function Home (){
                 <br/>
             </p>
 
-            <img className='body-img' src={require('../images/sauti-3.jpg')}/>
+            <img alt='sauti3' className='body-img' src={require('../images/sauti-3.jpg')}/>
 
-            <img className='body-img' src={require('../images/sauti-4.jpg')}/>
+            <img alt='sauti4' className='body-img' src={require('../images/sauti-4.jpg')}/>
             
             <p className='body-text'>
                 Sauti Africa is a mobile-based trade and market information platform, empowering East Africa's women-led SMEs to trade legally, safely and profitably across borders. 

@@ -206,7 +206,6 @@ class TableWholesaleQC extends Component {
         if (nextProps.data.length !== this.props.data.length) {
             reloadTableData(nextProps.data);
         } else {
-            console.log('ShouldComponentUpdate:', nextProps); 
             updateTable(nextProps.data);
         }
         return false;
@@ -217,7 +216,7 @@ class TableWholesaleQC extends Component {
             <div className='tableData'>
                 <h1>Wholesale Data QC</h1>
                 <hr/>
-                <table ref="main" width="100%" id="example4" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example4" className="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }

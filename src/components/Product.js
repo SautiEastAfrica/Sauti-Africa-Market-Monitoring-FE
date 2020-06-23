@@ -6,6 +6,7 @@ import LineChart from './LineChart';
 import Summary from './Summary'; 
 import TableProduct from './TableProduct'; 
 import DataQuality from './DataQuality'; 
+import Methodology from './Methodology'; 
 
 import { Card } from 'antd'; 
 
@@ -15,7 +16,6 @@ import '../styles/Product.scss';
 
 function Product(){
     
-    console.log(useParams()); 
     let { category = 'retail', country = 'TZA', market = 'Arusha', product = 'Morogoro+Rice' } = useParams(); 
     // const [url, setUrl] = useState({ category: category, country: country, market: market, product: product })
 
@@ -38,7 +38,6 @@ function Product(){
                 console.log(response); 
                 var data = response.data.history; 
                 var sorted = sortByDate(data); 
-                console.log(sorted); 
                 setHistory(sorted); 
                 setHistory(response.data.history); 
                 setQuality(response.data.quality); 
@@ -71,12 +70,12 @@ function Product(){
 
     return(
         <div className='product'>
-                {/* <ProductSearch /> */}
                 <Summary data={summary} quality={quality} />
+                {/* <ProductSearch /> */}
                 <DataQuality data={quality}/>
                 <LineChart history={history} summary={summary} quality={quality} />
                 <TableProduct data={history}/>
-                {/* {/* <Methodology/> */}
+                <Methodology/>
         </div>
     )
 }

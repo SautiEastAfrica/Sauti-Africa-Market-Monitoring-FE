@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../App.js'; 
 
-import { Form, Input, Checkbox, Button, Select } from 'antd';
+import { Card, Form, Input, Checkbox, Button, Select } from 'antd';
 
 function ProductSearch(){
 
@@ -28,7 +28,7 @@ function ProductSearch(){
         axios.get(`https://sauti2-app.herokuapp.com/availablepairs/`)
         .then(response => {
             console.log(`Available Pairs: '`, response); 
-            setCategories(response.data); 
+            setCategories(response.data.retail);
         })
         .catch(error => {
             console.log(error); 
@@ -36,38 +36,48 @@ function ProductSearch(){
     }, [])
 
     function handleChange(){
-
+        console.log(`Handle Change`); 
     }
 
     function handleSubmit(){
+        console.log(`Handle Submit`); 
         history.push(`http://localhost:3000/product/${category}/${country}/${market}/${product}`)
     }
 
+    // Starts here
+    function onChange(value) {
+    console.log(`selected ${value}`);
+    }
 
-        // Starts here
-            function onChange(value) {
-            console.log(`selected ${value}`);
-            }
+    function onBlur() {
+    console.log('blur');
+    }
 
-            function onBlur() {
-            console.log('blur');
-            }
+    function onFocus() {
+    console.log('focus');
+    }
 
-            function onFocus() {
-            console.log('focus');
-            }
+    function onSearch(val) {
+    console.log('search:', val);
+    }
+    // Ends here
 
-            function onSearch(val) {
-            console.log('search:', val);
-            }
-        // Ends here
+    console.log(categories); 
 
     return(
-        <div>
-            <Form>
+        <div style={{ marginRight: '10px', width: 400 }}>
+            <Card>
+            <Form
+                layout='horizontal'>
                 <h1>Product Search</h1>
                 {/* Starts Here */}
                 <Form.Item>
+                    <Select>
+                        {/* {categories.map(category => {
+                            console.log(category); 
+                            return <Option key={category} value={category}>{category}</Option>
+                    })} */}
+                    </Select>
                     <Select
                         showSearch
                         style={{ width: 200 }}
@@ -115,6 +125,7 @@ function ProductSearch(){
                     </Button>
                 </Form.Item>
             </Form>
+            </Card>
         {/* Ends Here */}
 {/* 
 

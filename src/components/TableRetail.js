@@ -183,7 +183,6 @@ class TableRetail extends Component {
         if (nextProps.data.length !== this.props.data.length) {
             reloadTableData(nextProps.data);
         } else {
-            console.log('ShouldComponentUpdate:', nextProps); 
             updateTable(nextProps.data);
         }
         return false;
@@ -194,7 +193,7 @@ class TableRetail extends Component {
             <div className='tableData'>
                 <h1>Retail Data</h1>
                 <hr/>
-                <table ref="main" width="100%" id="example" class="display cell-border compact hover nowrap order-column row-border stripe"/>
+                <table ref="main" width="100%" id="example" className="display cell-border compact hover nowrap order-column row-border stripe"/>
             </div>);
     }
 }
