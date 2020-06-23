@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect} from 'react';
-import { Card, CardTitle, CardHeader } from 'reactstrap';
-import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
-import styled from "styled-components";
-
-import '../styles/Profile.scss'; 
-
 import { AuthContext } from '../App.js'; 
 import { UserContext } from "../App";
+
+import { Card, Form, Input, Button } from 'antd';
+import { UserOutlined, MailOutlined } from '@ant-design/icons';
+
+import '../styles/Profile.scss'; 
 
 function Profile(props){
 
@@ -23,7 +21,7 @@ function Profile(props){
     axios
       .get(`/users/${id}`)
       .then(response =>  {
-        console.log('User successfull: ', response);
+        console.log('GET Request successfull! ', response);
         setUser(response.data)
       })
       .catch(error => {
@@ -38,45 +36,40 @@ function Profile(props){
         setUser({ ...user, [event.target.name]: event.target.value });
         console.log(user)
       };
-
     
-const handleSubmit = event => {
-      event.preventDefault();
+function updateProfile(values){
+      console.log(values); 
       axios
-      .put(`/users/${id}`, user)
+      .put(`/users/${id}`, values)
       .then(response =>  {
         console.log('User successfully updated!: ', response);
-        setChanged(response.data)
+        // setChanged(response.data)
       })
       .catch(error => {
         console.log('Error in updating user!: ', error);
-      });
-
-      
-  };
+      });      
+};
       
     return(
         <div className='profile'>
-                <Card>
-                    <CardTitle>Profile</CardTitle><br/>
-                    <CardHeader>Edit your profile here.</CardHeader><br/>
-                        <TextField
-                        label="Name"
-                        variant="outlined"
-                        name="name"
-                        value={user.name}
-                        onChange={handleChange}
-                      
-                        /><br/>
-                        <TextField
-                        label="Email"
-                        variant="outlined"
-                        name="email"
-                        value={user.email}
-                        onChange={handleChange}
-                        type= "email"
-                        /><br/>
-                        <Button variant="contained" type="submit" onClick={handleSubmit}>Save Changes</Button>
+                <Card title='Profile'>
+                    <Form name="normal_login" className="login-form" initialValues={{
+                        email: user.email, password: '', remember: true, }}  onFinish={updateProfile} >
+                      <Form.Item name='name' value={user.name} onChange={handleChange}>
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder={user.name} />
+                      </Form.Item>
+                      <Form.Item name="email" value={user.email} onChange={handleChange} placeholder={user.email}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please input your Email!',
+                          }, ]} >
+                        <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder={user.email} />
+                      </Form.Item>
+                      <Button type='primary' htmlType='submit'>
+                        Update Profile
+                      </Button>
+                    </Form>
                 </Card>
         </div>
     )
